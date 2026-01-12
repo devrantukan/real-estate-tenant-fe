@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Real Estate Tenant Panel Frontend
 
-## Getting Started
+This is the frontend application for the Real Estate Tenant Panel, a modern web application for managing real estate properties, tenants, and office operations. Built with Next.js, it offers a responsive and dynamic user interface.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Real Estate Tenant Panel Frontend interacts with the backend services to allow users to view property listings, manage their subscriptions, and communicate with real estate agents. It leverages Server-Side Rendering (SSR) and modern UI components for seamless performance.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies and Packages Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Core Framework
+- **Next.js** (`^14.2.3`): The React framework for production.
+- **React** (`^18`): Library for building user interfaces.
+- **TypeScript**: Static type checking.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Authentication & Database
+- **@kinde-oss/kinde-auth-nextjs**: Authentication solution.
+- **@supabase/supabase-js**: Supabase client for database and storage interaction.
+- **@prisma/client**: ORM for type-safe database access.
+- **Axios**: Promise-based HTTP client.
 
-## Learn More
+### UI Components & Styling
+- **Tailwind CSS**: Utility-first CSS framework.
+- **NextUI** (`@nextui-org/*`): Beautiful, fast, and modern React UI library.
+- **Radix UI** (`@radix-ui/*`): Unstyled, accessible UI primitives.
+- **Framer Motion**: Motion library for React.
+- **Lucide React**, **Heroicons**, **Phosphor Icons**, **Remixicon**: Icon sets.
+- **Embla Carousel**: Carousel component.
 
-To learn more about Next.js, take a look at the following resources:
+### Form Management & Validation
+- **React Hook Form**: Performant, flexible, and extensible forms.
+- **Zod**: TypeScript-first schema declaration and validation library.
+- **@hookform/resolvers**: Validation resolvers for React Hook Form.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Maps & Location
+- **@react-google-maps/api**: React components for Google Maps.
+- **Google Map React**: Google Map library.
+- **Google Maps React Markers**: Markers for Google Maps.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Search
+- **Typesense**: Fast, typo-tolerant search engine.
+- **React InstantSearch DOM**: Search UI components.
 
-## Deploy on Vercel
+### Payment Processing
+- **Stripe**: Payment processing platform.
+- **@stripe/react-stripe-js**: Stripe.js and Elements wrappers for React.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Utilities
+- **Nodemailer**: Send emails from Node.js.
+- **Sharp**: High-performance image processing.
+- **Slugify**: URL slug generation.
+- **Validator**: String validation and sanitization.
+- **React Toastify**: Toast notifications.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/devrantukan/real-estate-tenant-fe.git
+    cd real-estate-tenant-fe
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Environment Variables:**
+    Create a `.env` file in the root directory and configure the necessary keys as per the backend requirements (see `.env.example`).
+
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+   Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+
+## Project Structure
+
+-   `/src/app`: App Router pages and layouts.
+-   `/src/components`: Reusable UI components.
+-   `/src/lib`: Utility functions and library configurations (Prisma, Supabase, etc.).
+-   `/prisma`: Database schema and migrations.

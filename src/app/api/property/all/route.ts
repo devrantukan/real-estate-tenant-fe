@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const properties = await prisma.property.findMany({
@@ -19,7 +22,8 @@ export async function GET() {
         },
       },
       where: {
-        publishingStatus: "PUBLISHED",
+        publishingStatus: { in: ["PUBLISHED", "PENDING"] },
+        organizationId: Number(process.env.TenantOrganisationID),
       },
       orderBy: {
         createdAt: "desc",
