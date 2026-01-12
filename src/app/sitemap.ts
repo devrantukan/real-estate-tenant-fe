@@ -81,8 +81,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const offices = await prisma.office.findMany({
       select: {
         id: true,
-        updatedAt: true,
-        createdAt: true,
         slug: true,
       },
     });
@@ -99,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     offices.forEach((office) => {
       routes.push({
         url: `${baseUrl}/ofislerimiz/${office.id}/${office.slug}/`,
-        lastModified: office.updatedAt || new Date(),
+        lastModified: new Date(),
       });
     });
   } catch (error) {

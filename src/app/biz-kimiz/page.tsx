@@ -3,6 +3,9 @@ import { MapPin } from "lucide-react";
 import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function extractImageUrl(html: string): string {
   const match = html.match(/src="([^"]+)"/);
   return match ? match[1] : "";
@@ -47,7 +50,7 @@ async function getBizKimizContent() {
             images: true,
           },
           orderBy: {
-            createdAt: "desc",
+            id: "desc",
           },
         }),
       ]);

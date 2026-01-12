@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
         avg: average(score1, score2, score3, score4, score5, score6),
         kvkkConsent: kvkkConsent === "true" ? 1 : 0,
         marketingConsent: marketingConsent === "true" ? 1 : 0,
-        nameConsent: nameConsent === "true" ? 1 : 0,
+        organizationId: Number(process.env.TenantOrganisationID),
       },
     });
 
@@ -103,13 +103,13 @@ export async function POST(request: NextRequest) {
       <p><strong>Müşteri Telefon:</strong> ${phone}</p>
       <p><strong>Değerlendirme:</strong> ${review}</p>
       <p><strong>Ortalama Puan:</strong> ${average(
-        score1,
-        score2,
-        score3,
-        score4,
-        score5,
-        score6
-      )}/5</p>
+      score1,
+      score2,
+      score3,
+      score4,
+      score5,
+      score6
+    )}/5</p>
     `;
 
     await transporter.sendMail({
