@@ -9,74 +9,35 @@ export async function GET(
 ) {
   // console.log("params", params.city);
 
-  const city = await prisma.city.findFirst({
+  // Fetch all districts for the city regardless of property status
+  const districts = await prisma.district.findMany({
     where: {
-      slug: params.city,
+      city: {
+        slug: params.city,
+      },
     },
-  });
-
-  //console.log("city is", city?.city_name);
-
-  const projectLocations = await prisma.propertyLocation.findMany({
     include: {
-      property: {
-        select: {
-          publishingStatus: true,
-        },
-      },
+      city: true,
     },
-    where: {
-      city: city?.city_name,
-      property: {
-        publishingStatus: "PUBLISHED",
-      },
-    },
-    distinct: ["district"],
   });
-
-  //  console.log("projectLocations", projectLocations);
-
-  let districts: string[] = [];
-
-  projectLocations.forEach((location) => {
-    districts.push(location.district);
-  });
-
-  //console.log("districts", districts);
 
   function capitalize(s: string): string {
     return String(s[0]).toLocaleUpperCase("tr") + String(s).slice(1);
   }
-  const data: any[] = [];
-  await Promise.all(
-    districts.map(async (district) => {
-      const districtData = await prisma.district.findFirst({
-        where: {
-          district_name: district.toLocaleUpperCase("tr"),
-          city: {
-            slug: slugify(params.city, { lower: true }),
-          },
-        },
-      });
-      // console.log(districtData);
 
-      if (districtData) {
-        data.push({
-          district_id: districtData.district_id,
-          label: capitalize(districtData.district_name.toLocaleLowerCase("tr")),
-          value: slugify(districtData.district_name, {
-            lower: true,
-          }),
-          city_name: capitalize(districtData.city_name.toLocaleLowerCase("tr")),
-          city_slug: slugify(districtData.city_name, {
-            lower: true,
-          }),
-        });
-      }
-    })
-  );
+  const data = districts.map((districtData) => ({
+    district_id: districtData.district_id,
+    label: capitalize(districtData.district_name.toLocaleLowerCase("tr")),
+    value: slugify(districtData.district_name, {
+      lower: true,
+    }),
+    city_name: capitalize(districtData.city_name.toLocaleLowerCase("tr")),
+    city_slug: slugify(districtData.city_name, {
+      lower: true,
+    }),
+  }));
 
-  console.log(data);
+  // console.log(data);
 
   return NextResponse.json(data);
 }
