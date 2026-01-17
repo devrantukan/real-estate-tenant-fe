@@ -6,9 +6,9 @@ const Typesense = require('typesense');
 const client = new Typesense.Client({
   nodes: [
     {
-      host: "search.m1nd.xyz",
-      port: 443,
-      protocol: "https",
+      host: process.env.NEXT_PUBLIC_TYPESENSE_HOST || "localhost",
+      port: parseInt(process.env.NEXT_PUBLIC_TYPESENSE_PORT || "8108"),
+      protocol: process.env.NEXT_PUBLIC_TYPESENSE_PROTOCOL || "http",
     },
   ],
   apiKey: "xyz",
@@ -33,7 +33,7 @@ async function createCollection() {
       { facet: true, name: "price", type: "int32" },
       { facet: true, name: "discountedPrice", type: "int32" },
       { facet: true, name: "contract", type: "string" },
-      { facet: true, name: "tags", type: "string[]", optional: true},
+      { facet: true, name: "tags", type: "string[]", optional: true },
       { facet: true, name: "type", type: "string" },
       { facet: true, name: "neighborhood", type: "string" },
       { facet: true, name: "district", type: "string" },
@@ -47,8 +47,8 @@ async function createCollection() {
       { facet: true, name: "hasGardenYard", type: "bool" },
       { facet: true, name: "floor", type: "int32" },
       { name: "_geoloc", type: "geopoint" },
-      
-     
+
+
       { name: "published_date", type: "int32" }
     ],
     default_sorting_field: "published_date"
@@ -79,7 +79,7 @@ async function insertData(item) {
     hasGardenYard: item.feature.hasGardenYard,
     floor: item.feature.floor,
     agentId: item.agent.id,
-    agentName: item.agent.name, 
+    agentName: item.agent.name,
     images: item.images,
     agentSurname: item.agent.surname,
     agentAvatarUrl: item.agent.avatarUrl,
@@ -87,9 +87,9 @@ async function insertData(item) {
     agentRoleSlug: item.agent.role.slug,
     agentOffice: item.agent.office,
     published_date: Math.floor(new Date(item.updatedAt).getTime() / 1000),
-    
+
     "category1": [item.contract.value],
-    
+
     _geoloc: [
       parseFloat(item.location.latitude) || 0,
       parseFloat(item.location.longitude) || 0
@@ -168,7 +168,7 @@ async function main() {
           },
         }
       }
-      
+
     },
   });
 
@@ -178,7 +178,7 @@ async function main() {
     await insertData(item);
   });
 
-  
+
   console.log("Typesense data initialization complete!");
 }
 main();

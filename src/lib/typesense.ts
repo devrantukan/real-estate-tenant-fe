@@ -5,9 +5,9 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
     apiKey: "xyz", // Use the same you've defined in docker-compose
     nodes: [
       {
-        host: "search.m1nd.xyz",
-        port: 443,
-        protocol: "https",
+        host: process.env.NEXT_PUBLIC_TYPESENSE_HOST || "localhost",
+        port: parseInt(process.env.NEXT_PUBLIC_TYPESENSE_PORT || "8108"),
+        protocol: process.env.NEXT_PUBLIC_TYPESENSE_PROTOCOL || "http",
       },
     ],
   },
