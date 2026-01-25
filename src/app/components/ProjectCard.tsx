@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@nextui-org/react";
 import { Project } from "@prisma/client";
 import {
@@ -76,8 +78,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               <div
                 key={index}
                 className={`absolute inset-0 transition-opacity duration-500 ${index === currentImageIndex
-                    ? "opacity-100 z-10"
-                    : "opacity-0 z-0"
+                  ? "opacity-100 z-10"
+                  : "opacity-0 z-0"
                   }`}
               >
                 <Image
@@ -136,8 +138,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                       }
                     }}
                     className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${index === currentImageIndex
-                        ? "bg-white"
-                        : "bg-white/50 hover:bg-white/75"
+                      ? "bg-white"
+                      : "bg-white/50 hover:bg-white/75"
                       }`}
                   />
                 ))}
