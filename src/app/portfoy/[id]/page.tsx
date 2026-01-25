@@ -28,15 +28,15 @@ export async function generateMetadata({
 
     const thumbnailUrl = property.images[0].url.includes("/propertyImages/")
       ? property.images[0].url.replace(
-          "/propertyImages/",
-          "/thumbnails-property-images/"
-        )
+        "/propertyImages/",
+        "/thumbnails-property-images/"
+      )
       : property.images[0].url.includes("/property-images/")
-      ? property.images[0].url.replace(
+        ? property.images[0].url.replace(
           "/property-images/",
           "/thumbnails-property-images/"
         )
-      : property.images[0].url;
+        : property.images[0].url;
 
     const locationString = [
       property.location?.neighborhood,
@@ -49,7 +49,7 @@ export async function generateMetadata({
 
     return {
       metadataBase: new URL(
-        process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak"
+        process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com/emlak"
       ),
       title: `${property.name} - ${property.location?.city}, ${property.location?.district}`,
       // description: `${property.feature?.bedrooms} Yatak Odalı, ${
@@ -58,11 +58,9 @@ export async function generateMetadata({
       //   property.contract === "sale" ? "Satılık" : "Kiralık"
       // } - ${locationString}`,
       description: stripHtml(property.description).slice(0, 80) + "...",
-      keywords: `${property.type}, ${
-        property.contract === "sale" ? "satılık" : "kiralık"
-      }, ${property.location?.city}, ${property.location?.district}, ${
-        property.location?.neighborhood
-      }, emlak, gayrimenkul`,
+      keywords: `${property.type}, ${property.contract === "sale" ? "satılık" : "kiralık"
+        }, ${property.location?.city}, ${property.location?.district}, ${property.location?.neighborhood
+        }, emlak, gayrimenkul`,
       openGraph: {
         title: property.name,
         description: stripHtml(property.description).slice(0, 80) + "...",
@@ -70,7 +68,7 @@ export async function generateMetadata({
           property.images && property.images.length > 0
             ? [{ url: thumbnailUrl }]
             : [],
-        siteName: "Retroia",
+        siteName: "Investrong CRM",
         locale: "tr_TR",
         type: "article",
         url: `/portfoy/${params.id}`,

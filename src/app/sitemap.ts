@@ -7,7 +7,7 @@ export const revalidate = 0; // Disable static generation
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com";
 
   // Static routes
   const routes: MetadataRoute.Sitemap = [

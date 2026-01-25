@@ -83,11 +83,11 @@ export async function POST(request: NextRequest) {
 
     // Send email notification
     const transporter = nodemailer.createTransport({
-      host: "mail.retroia.com",
+      host: "mail.investrong.com",
       port: 587,
       secure: false,
       auth: {
-        user: "info@retroia.com",
+        user: "info@investrong.com",
         pass: "Info!2025",
       },
       tls: {
@@ -113,8 +113,8 @@ export async function POST(request: NextRequest) {
     `;
 
     await transporter.sendMail({
-      from: "info@retroia.com",
-      to: "info@retroia.com",
+      from: "info@investrong.com",
+      to: "info@investrong.com",
       cc: "devrantukan@gmail.com",
       subject: "Yeni Danışman Değerlendirmesi",
       html: emailContent,

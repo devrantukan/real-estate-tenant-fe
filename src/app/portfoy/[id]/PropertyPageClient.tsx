@@ -79,7 +79,7 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
   useEffect(() => {
     const loadAnalytics = async () => {
       try {
-        const response = await fetch("/emlak/data/analytics-routes.json");
+        const response = await fetch("/data/analytics-routes.json");
         if (!response.ok) {
           throw new Error("Failed to fetch analytics data");
         }
@@ -101,7 +101,7 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
       try {
         const API_URL =
           process.env.NODE_ENV === "production"
-            ? `/emlak/api/properties/${params.id}/`
+            ? `/api/properties/${params.id}/`
             : `/api/properties/${params.id}`;
 
         const response = await fetch(API_URL);
@@ -151,7 +151,7 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
         try {
           const API_URL = new URL(
             process.env.NODE_ENV === "production"
-              ? `/emlak/api/officeWorker/${params.agentId}/`
+              ? `/api/officeWorker/${params.agentId}/`
               : `/api/officeWorker/${params.agentId}`,
             window.location.origin
           ).toString();
@@ -296,15 +296,15 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
 
         const thumbnailUrl = image.url.includes("/propertyImages/")
           ? image.url.replace(
-              "/propertyImages/",
-              "/thumbnails-property-images/"
-            )
+            "/propertyImages/",
+            "/thumbnails-property-images/"
+          )
           : image.url.includes("/property-images/")
-          ? image.url.replace(
+            ? image.url.replace(
               "/property-images/",
               "/thumbnails-property-images/"
             )
-          : image.url;
+            : image.url;
 
         return {
           original: image.url,
@@ -376,9 +376,9 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
 
   const thumbnailUrl = property.images[0].url.includes("/propertyImages/")
     ? property.images[0].url.replace(
-        "/propertyImages/",
-        "/thumbnails-property-images/"
-      )
+      "/propertyImages/",
+      "/thumbnails-property-images/"
+    )
     : property.images[0].url;
 
   return (
@@ -782,7 +782,7 @@ const AgentInfo = ({
     <div className="flex-grow">
       <h3 className="text-base font-semibold mb-2 text-right">
         <Link
-          href={`/emlak/ofis/${agent.officeId}/${agent.office.slug}/${agent.role.slug}/${agent.id}/${agent.slug}`}
+          href={`/ofis/${agent.officeId}/${agent.office.slug}/${agent.role.slug}/${agent.id}/${agent.slug}`}
         >
           {agent.name} {agent.surname}
         </Link>

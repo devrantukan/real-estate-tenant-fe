@@ -8,11 +8,11 @@ async function testSMTPConnection() {
     console.log("Testing SMTP connection...");
 
     const transporter = nodemailer.createTransport({
-      host: "mail.retroia.com",
+      host: "mail.investrong.com",
       port: 587,
       secure: false,
       auth: {
-        user: "info@retroia.com",
+        user: "info@investrong.com",
         pass: "Info!2025",
       },
       debug: true, // Enable debug logging
@@ -64,11 +64,11 @@ async function sendEmailNotification(data: {
     }
 
     const transporter = nodemailer.createTransport({
-      host: "mail.retroia.com",
+      host: "mail.investrong.com",
       port: 587,
       secure: false,
       auth: {
-        user: "info@retroia.com",
+        user: "info@investrong.com",
         pass: "Info!2025",
       },
       debug: true,
@@ -94,8 +94,8 @@ async function sendEmailNotification(data: {
     `;
 
     const mailOptions = {
-      from: "info@retroia.com",
-      to: "info@retroia.com",
+      from: "info@investrong.com",
+      to: "info@investrong.com",
       cc: "devrantukan@gmail.com",
       subject: "Yeni Emlak Danışmanı Adayı Başvurusu",
       html: emailContent,

@@ -19,25 +19,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak"
+      process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com"
     ),
-    title: `${contractType} Konut İlanları | Retroia Gayrimenkul`,
+    title: `${contractType} Konut İlanları | Investrong CRM`,
     description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} konut ilanları. Daire, villa, müstakil ev ve daha fazlası için hemen inceleyin.`,
-    keywords: `${contractType.toLowerCase()} konut, ${contractType.toLowerCase()} daire, ${contractType.toLowerCase()} villa, ${contractType.toLowerCase()} ev, emlak, gayrimenkul, konut ilanları`,
+    keywords: `${contractType.toLowerCase()} konut, ${contractType.toLowerCase()} daire, ${contractType.toLowerCase()} villa, ${contractType.toLowerCase()} ev, emlak, gayrimenkul, konut ilanları, investrong, crm`,
     openGraph: {
-      title: `${contractType} Konut İlanları | Retroia Gayrimenkul`,
+      title: `${contractType} Konut İlanları | Investrong CRM`,
       description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} konut ilanları. Daire, villa, müstakil ev ve daha fazlası için hemen inceleyin.`,
-      siteName: "Retroia",
+      siteName: "Investrong CRM",
       locale: "tr_TR",
       type: "website",
       url: `/konut/${params.contract}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${contractType} Konut İlanları | Retroia Gayrimenkul`,
+      title: `${contractType} Konut İlanları | Investrong CRM`,
       description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} konut ilanları. Daire, villa, müstakil ev ve daha fazlası için hemen inceleyin.`,
-      creator: "@retroia",
-      site: "@retroia",
+      creator: "@investrong",
+      site: "@investrong",
     },
     alternates: {
       canonical: `/konut/${params.contract}`,
@@ -54,6 +54,7 @@ export default async function Home({ params }: Props) {
     where: { slug: params.contract },
   });
 
+  params.type = "konut";
   const type = await prisma.propertyType.findFirst({
     where: {
       slug: params.type,

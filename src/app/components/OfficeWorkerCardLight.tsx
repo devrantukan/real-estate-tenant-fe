@@ -18,10 +18,10 @@ const OfficeWorkerCardLight = ({ officeWorker, index }: Props) => {
       <Link
         href={
           officeWorker.roleId === 8 ||
-          officeWorker.roleId === 9 ||
-          officeWorker.roleId === 10
+            officeWorker.roleId === 9 ||
+            officeWorker.roleId === 10
             ? "#"
-            : `/emlak/ofis/${officeWorker.office.id}/${officeWorker.office.slug}/${officeWorker.role.slug}/${officeWorker.id}/${officeWorker.slug}`
+            : `/ofis/${officeWorker.office.id}/${officeWorker.office.slug}/${officeWorker.role.slug}/${officeWorker.id}/${officeWorker.slug}`
         }
         className="flex flex-col"
       >

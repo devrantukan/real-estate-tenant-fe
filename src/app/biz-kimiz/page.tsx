@@ -12,8 +12,8 @@ function extractImageUrl(html: string): string {
 }
 
 export const metadata: Metadata = {
-  title: "Biz Kimiz? | Retroia",
-  description: "Retroia Hakkında",
+  title: "Biz Kimiz? | Investrong CRM",
+  description: "Investrong CRM Hakkında",
 };
 
 async function getBizKimizContent() {
@@ -92,7 +92,7 @@ export default async function BizKimizPage() {
                 content?.bannerImage ||
                 "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/retroia.jpg"
               }
-              alt="Retroia Gayrimenkul"
+              alt="Investrong CRM Gayrimenkul"
               fill
               sizes="100vw"
               priority
@@ -172,7 +172,7 @@ export default async function BizKimizPage() {
                   <Image
                     src={
                       office.images[0]?.url ||
-                      "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/retroia.jpg"
+                      "/investrong.png"
                     }
                     alt={`${office.name} ofisi`}
                     width={400}

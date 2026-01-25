@@ -21,7 +21,7 @@ const OfficeWorkerAvatars = ({ members }: Props) => {
           className="rounded-full overflow-hidden w-10 h-10 border-2 border-gray-200"
         >
           <Image
-            src={member.avatarUrl || "/default-avatar.png"}
+            src={member.avatarUrl || "/profile.png"}
             alt={member.name}
             width={40}
             height={40}

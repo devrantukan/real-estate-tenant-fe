@@ -19,25 +19,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak"
+      process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com"
     ),
-    title: `${contractType} Arsa ve Arazi İlanları | Retroia Gayrimenkul`,
+    title: `${contractType} Arsa ve Arazi İlanları | Investrong CRM`,
     description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} arsa ve arazi ilanları. İmar durumu uygun, yatırımlık ve geliştirilebilir arsalar için hemen inceleyin.`,
-    keywords: `${contractType.toLowerCase()} arsa, ${contractType.toLowerCase()} arazi, ${contractType.toLowerCase()} tarla, ${contractType.toLowerCase()} bahçe, ${contractType.toLowerCase()} yatırımlık arsa, emlak, gayrimenkul, arsa ilanları`,
+    keywords: `${contractType.toLowerCase()} arsa, ${contractType.toLowerCase()} arazi, ${contractType.toLowerCase()} tarla, ${contractType.toLowerCase()} bahçe, ${contractType.toLowerCase()} yatırımlık arsa, emlak, gayrimenkul, arsa ilanları, investrong, crm`,
     openGraph: {
-      title: `${contractType} Arsa ve Arazi İlanları | Retroia Gayrimenkul`,
+      title: `${contractType} Arsa ve Arazi İlanları | Investrong CRM`,
       description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} arsa ve arazi ilanları. İmar durumu uygun, yatırımlık ve geliştirilebilir arsalar için hemen inceleyin.`,
-      siteName: "Retroia",
+      siteName: "Investrong CRM",
       locale: "tr_TR",
       type: "website",
       url: `/arsa-arazi/${params.contract}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${contractType} Arsa ve Arazi İlanları | Retroia Gayrimenkul`,
+      title: `${contractType} Arsa ve Arazi İlanları | Investrong CRM`,
       description: `Türkiye'nin en güvenilir gayrimenkul platformunda ${contractType.toLowerCase()} arsa ve arazi ilanları. İmar durumu uygun, yatırımlık ve geliştirilebilir arsalar için hemen inceleyin.`,
-      creator: "@retroia",
-      site: "@retroia",
+      creator: "@investrong",
+      site: "@investrong",
     },
     alternates: {
       canonical: `/arsa-arazi/${params.contract}`,

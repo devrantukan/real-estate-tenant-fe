@@ -20,11 +20,11 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak/"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com/"
   ),
   title: {
-    default: "Retroia - Emlak ve Gayrimenkul",
-    template: "%s | Retroia",
+    default: "Investrong CRM - Emlak ve Gayrimenkul",
+    template: "%s | Investrong CRM",
   },
   description:
     "Türkiye genelinde satılık ve kiralık emlak ilanları, gayrimenkul yatırım fırsatları.",
@@ -37,10 +37,12 @@ export const metadata: Metadata = {
     "daire",
     "villa",
     "arsa",
+    "investrong",
+    "crm"
   ],
-  authors: [{ name: "Retroia" }],
-  creator: "Retroia",
-  publisher: "Retroia",
+  authors: [{ name: "Investrong CRM" }],
+  creator: "Investrong CRM",
+  publisher: "Investrong CRM",
   formatDetection: {
     email: false,
     address: false,
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Retroia",
+    siteName: "Investrong CRM",
     locale: "tr_TR",
   },
   robots: {
@@ -60,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/emlak/favicon/favicon.ico",
+    icon: "/favicon/favicon.ico",
     // Add more icon sizes if needed
     // apple: '/apple-icon.png',
   },
@@ -89,31 +91,31 @@ export default function RootLayout({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/emlak/favicon/apple-touch-icon.png"
+          href="/favicon/apple-touch-icon.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/emlak/favicon/favicon-32x32.png"
+          href="/favicon/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/emlak/favicon/favicon-16x16.png"
+          href="/favicon/favicon-16x16.png"
         />
-        <link rel="manifest" href="/emlak/favicon/site.webmanifest" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
         <link
           rel="mask-icon"
-          href="/emlak/favicon/safari-pinned-tab.svg"
-          color="#172B4D"
+          href="/favicon/safari-pinned-tab.svg"
+          color="#5bbad5"
         />
-        <link rel="shortcut icon" href="/emlak/favicon/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#172B4D" />
         <meta
           name="msapplication-config"
-          content="/emlak/favicon/browserconfig.xml"
+          content="/favicon/browserconfig.xml"
         />
         <meta name="theme-color" content="#ffffff" />
         <meta charSet="utf-8" />
@@ -123,7 +125,7 @@ export default function RootLayout({
         <meta property="og:locale" content="tr_TR" />
         <link
           rel="alternate"
-          href="https://www.retroia.com/emlak/"
+          href="https://www.investrong.com/"
           hrefLang="tr-TR"
         />
         {GA_MEASUREMENT_ID && (

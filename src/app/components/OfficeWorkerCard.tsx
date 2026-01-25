@@ -17,7 +17,7 @@ const OfficeWorkerCard = ({ officeWorker, index }: Props) => {
       className="min-w-[300px] min-h-[400px] h-auto w-full px-4 m-2 pb-2"
     >
       <Link
-        href={`/emlak/ofis/${officeWorker.office.id}/${officeWorker.office.slug}/${officeWorker.role.slug}/${officeWorker.id}/${officeWorker.slug}`}
+        href={`/ofis/${officeWorker.office.id}/${officeWorker.office.slug}/${officeWorker.role.slug}/${officeWorker.id}/${officeWorker.slug}`}
       >
         <Image
           src={`${officeWorker.avatarUrl}`}
@@ -32,7 +32,7 @@ const OfficeWorkerCard = ({ officeWorker, index }: Props) => {
         <p className="font-semilight text-sm">{officeWorker.role?.title}</p>
         <div className="flex flex-row items-center gap-x-1 text-gray-600 text-sm">
           <Envelope width={20} height={20} />
-          {officeWorker.email}
+          {officeWorker.email.replace("retroia.com", "investrong.com")}
         </div>
         <div className="flex flex-row items-center gap-x-1 mb-2 text-gray-600 text-sm">
           <PhoneCall width={20} height={20} />

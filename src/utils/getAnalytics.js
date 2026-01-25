@@ -53,12 +53,12 @@ async function getAnalyticsData() {
     // Group data by ID and sum up page views
     const combinedData = response.rows.reduce((acc, row) => {
       const path = row.dimensionValues[0].value;
-      const portfoyMatch = path.match(/\/emlak\/portfoy\/(\d+)(?:\/|$)/);
-      
+      const portfoyMatch = path.match(/\/portfoy\/(\d+)(?:\/|$)/);
+
       if (portfoyMatch) {
         const id = portfoyMatch[1];
         const pageViews = parseInt(row.metricValues[0].value);
-        
+
         if (!acc[id]) {
           acc[id] = {
             path: `/emlak/portfoy/${id}/`,
@@ -66,10 +66,10 @@ async function getAnalyticsData() {
             id
           };
         }
-        
+
         acc[id].totalPageViews += pageViews;
       }
-      
+
       return acc;
     }, {});
 

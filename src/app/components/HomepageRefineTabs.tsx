@@ -72,14 +72,14 @@ const HomepageRefineTabs = () => {
                     onSubmit={handleSubmit(async (data) => {
                       try {
                         const API_URL =
-                          process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+                          process.env.NEXT_PUBLIC_API_URL || "/api";
                         const response = await fetch(
                           `${API_URL}/properties/check/${data.propertyId}/`
                         );
                         const result = await response.json();
 
                         if (result.exists) {
-                          router.push(`/emlak/portfoy/${data.propertyId}`);
+                          router.push(`/portfoy/${data.propertyId}`);
                         } else {
                           setError("propertyId", {
                             type: "manual",

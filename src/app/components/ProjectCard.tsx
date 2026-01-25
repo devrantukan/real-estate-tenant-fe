@@ -67,7 +67,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   }, [currentImageIndex, project.images.length, nextImage]);
 
   return (
-    <Link href={`/emlak/projelerimiz/${project.slug}/`}>
+    <Link href={`/projelerimiz/${project.slug}/`}>
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <div className="flex flex-col lg:flex-row">
           {/* Image Section */}
@@ -75,11 +75,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             {project.images.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-500 ${
-                  index === currentImageIndex
+                className={`absolute inset-0 transition-opacity duration-500 ${index === currentImageIndex
                     ? "opacity-100 z-10"
                     : "opacity-0 z-0"
-                }`}
+                  }`}
               >
                 <Image
                   src={image.url}
@@ -136,11 +135,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                         setTimeout(() => setIsTransitioning(false), 500);
                       }
                     }}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${
-                      index === currentImageIndex
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 cursor-pointer ${index === currentImageIndex
                         ? "bg-white"
                         : "bg-white/50 hover:bg-white/75"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>

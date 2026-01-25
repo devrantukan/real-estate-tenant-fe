@@ -9,31 +9,38 @@ import OfficeWorkerCard from "../components/OfficeWorkerCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Retroia Gayrimenkul, Real Estate - Danışmanlarımız",
-  description: "Retroia Gayrimenkul, Real Estate - Danışmanlarımız",
+  title: "Investrong CRM Gayrimenkul, Real Estate - Danışmanlarımız",
+  description: "Investrong CRM Gayrimenkul, Real Estate - Danışmanlarımız",
 };
 
 const OfficeWorkersPage = async () => {
-  const officeWorkers = await prisma.officeWorker.findMany({
-    where: {
-      roleId: { in: [7, 6, 3, 2] },
-    },
-    include: {
-      properties: true,
-      office: true,
-      role: true,
-    },
-    orderBy: {
-      name: "asc",
-    },
-  });
+  let officeWorkers = [];
+  try {
+    officeWorkers = await prisma.officeWorker.findMany({
+      where: {
+        roleId: { in: [7, 6, 3, 2] },
+      },
+      include: {
+        properties: true,
+        office: true,
+        role: true,
+      },
+      orderBy: {
+        name: "asc",
+      },
+    });
+  } catch (error) {
+    console.error("Prisma error during build/render:", error);
+    // Return empty list instead of failing build
+    return <div>Danışmanlar şu anda yüklenemiyor.</div>;
+  }
 
-  if (!officeWorkers) return notFound();
+  if (!officeWorkers || officeWorkers.length === 0) return <div>Danışman bulunamadı.</div>;
   return (
     <div>
       <div className="h-[480px] bg-slate-300 lg:m-6 p-4 lg:rounded-xl mb-12 relative">
         <Image
-          alt="Retroia Gayrimenkul "
+          alt="Investrong CRM Gayrimenkul "
           src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/ofisimiz.jpg?t=2024-12-26T00%3A15%3A38.890Z"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"

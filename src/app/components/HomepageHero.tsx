@@ -9,9 +9,9 @@ export default function HomepageHero() {
     <>
       <div className="flex justify-left  p-6 items-center lg:h-screen w-full  relative">
         <Image
-          alt="Retroia Gayrimenkul "
-          src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/ana-sayfa.jpg?t=2024-12-25T23%3A28%3A18.062Z"
-          className="max-h-screen  h-full object-contain object-center z-0  lg:pb-[65px] lg:ml-[60px] opacity-90 "
+          alt="Investrong CRM Gayrimenkul "
+          src="/images/1.jpg"
+          className="max-h-screen  h-full object-cover object-center z-0  lg:pb-[65px] lg:ml-[60px] opacity-90 "
           layout="fill"
           objectFit="cover"
           sizes="100vw"

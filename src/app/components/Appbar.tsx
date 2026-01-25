@@ -42,19 +42,15 @@ const Appbar = () => {
         />
         <NavbarBrand className="w-full flex lg:justify-start justify-center mr-12">
           <Link
-            href={"/emlak/"}
+            href={"/"}
             className="flex items-center text-primary-400 hover:text-primary-600 transition-colors"
           >
             <Image
-              src={
-                process.env.NODE_ENV === "development"
-                  ? "https://www.retroia.com/emlak/retroia-logo.png"
-                  : "/emlak/retroia-logo.png"
-              }
+              src="/investrong.png"
               width={125}
               height={80}
-              alt="Retroia Logo"
-              className="h-[40px] w-[125px] object-contain"
+              alt="Investrong CRM Logo"
+              className="h-[40px] w-auto object-contain"
               priority
             />
           </Link>
@@ -79,46 +75,44 @@ const Appbar = () => {
           >
             <DropdownItem
               key="satilik-konut"
-              href={getRoute("/konut/satilik/")}
+              href="/konut/satilik/"
             >
               Satılık Konutlar
             </DropdownItem>
             <DropdownItem
               key="satilik-ticari"
-              href={getRoute("/ticari/satilik/")}
+              href="/ticari/satilik/"
             >
               Satılık Ticari Gayrimenkuller
             </DropdownItem>
             <DropdownItem
               key="satilik-arsa"
-              href={getRoute("/arsa-arazi/satilik/")}
+              href="/arsa-arazi/satilik/"
             >
               Satılık Arsalar
             </DropdownItem>
             <DropdownItem
               key="kiralik-konut"
-              href={getRoute("/konut/kiralik/")}
+              href="/konut/kiralik/"
             >
               Kiralık Konutlar
             </DropdownItem>
             <DropdownItem
               key="kiralik-ticari"
-              href={getRoute("/ticari/kiralik/")}
+              href="/ticari/kiralik/"
             >
               Kiralık Ticari Gayrimenkuller
             </DropdownItem>
             <DropdownItem
               key="kiralik-arsa"
-              href={getRoute("/arsa-arazi/kiralik/")}
+              href="/arsa-arazi/kiralik/"
             >
               Kiralık Arsalar
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <NavbarItem isActive={pathname === getRoute("/projelerimiz")}>
-          <Link href="https://www.retroia.com/projeler/" target="_blank">
-            Projelerimiz
-          </Link>
+          <Link href="/projelerimiz">Projelerimiz</Link>
         </NavbarItem>
 
         <NavbarItem isActive={pathname === getRoute("/ofislerimiz")}>
@@ -155,12 +149,12 @@ const Appbar = () => {
         >
           <Link
             {...(pathname ===
-            getRoute("/gayrimenkullerinizi-satalim-kiralayalim")
+              getRoute("/gayrimenkullerinizi-satalim-kiralayalim")
               ? { "aria-current": "page" }
               : { color: "foreground" })}
             href={getRoute("/gayrimenkullerinizi-satalim-kiralayalim/")}
           >
-            Retroia ile Sat Kirala
+            Investrong CRM ile Sat Kirala
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -179,37 +173,37 @@ const Appbar = () => {
             <DropdownMenu aria-label="Portföy seçenekleri">
               <DropdownItem
                 key="satilik-konut"
-                href={getRoute("/konut/satilik/")}
+                href="/konut/satilik/"
               >
                 Satılık Konutlar
               </DropdownItem>
               <DropdownItem
                 key="satilik-ticari"
-                href={getRoute("/ticari/satilik/")}
+                href="/ticari/satilik/"
               >
                 Satılık Ticari Gayrimenkuller
               </DropdownItem>
               <DropdownItem
                 key="satilik-arsa"
-                href={getRoute("/arsa-arazi/satilik/")}
+                href="/arsa-arazi/satilik/"
               >
                 Satılık Arsalar
               </DropdownItem>
               <DropdownItem
                 key="kiralik-konut"
-                href={getRoute("/konut/kiralik/")}
+                href="/konut/kiralik/"
               >
                 Kiralık Konutlar
               </DropdownItem>
               <DropdownItem
                 key="kiralik-ticari"
-                href={getRoute("/ticari/kiralik/")}
+                href="/ticari/kiralik/"
               >
                 Kiralık Ticari Gayrimenkuller
               </DropdownItem>
               <DropdownItem
                 key="kiralik-arsa"
-                href={getRoute("/arsa-arazi/kiralik/")}
+                href="/arsa-arazi/kiralik/"
               >
                 Kiralık Arsalar
               </DropdownItem>
@@ -221,8 +215,7 @@ const Appbar = () => {
           className="h-1/4"
         >
           <Link
-            href="https://www.retroia.com/projeler/"
-            target="_blank"
+            href="/projelerimiz"
             className="text-3xl text-blue-950"
             onClick={() => setIsMenuOpen()}
           >
@@ -284,14 +277,14 @@ const Appbar = () => {
         >
           <Link
             {...(pathname ===
-            getRoute("/gayrimenkullerinizi-satalim-kiralayalim")
+              getRoute("/gayrimenkullerinizi-satalim-kiralayalim")
               ? { "aria-current": "page" }
               : { color: "foreground" })}
             href={getRoute("/gayrimenkullerinizi-satalim-kiralayalim/")}
             className="text-3xl text-blue-950"
             onClick={() => setIsMenuOpen()}
           >
-            Retroia ile Sat Kirala
+            Investrong CRM ile Sat Kirala
           </Link>
         </NavbarItem>
       </NavbarMenu>

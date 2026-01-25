@@ -130,7 +130,7 @@ export default function ProjectDetail({ project, agent }: ProjectDetailProps) {
                 <div className="flex-grow">
                   <h3 className="text-base font-semibold mb-2 text-right">
                     <Link
-                      href={`/emlak/ofis/${agent.officeId}/${agent.office.slug}/${agent.role?.slug}/${agent.id}/${agent.slug}`}
+                      href={`/ofis/${agent.officeId}/${agent.office.slug}/${agent.role?.slug}/${agent.id}/${agent.slug}`}
                     >
                       {agent.name} {agent.surname}
                     </Link>

@@ -84,7 +84,7 @@ export default function ProspectCustomerForm({
   useEffect(() => {
     async function fetchDistricts(city: string) {
       try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
         const encodedCity = encodeURIComponent(city);
         const response = await axios.get(
           `${API_URL}/data/districts/${encodedCity}/`
@@ -183,7 +183,7 @@ export default function ProspectCustomerForm({
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
       const { data: responseData } = await axios.post(
         `${API_URL}/forms/post-prospect-customer-form/`,
         data,
@@ -468,11 +468,11 @@ export default function ProspectCustomerForm({
                       <Link
                         onClick={() => {
                           window.open(
-                            "/emlak /kvkk-ve-aydinlatma-metni",
+                            "/kvkk-ve-aydinlatma-metni",
                             "_blank"
                           );
                         }}
-                        href="/emlak/kvkk-ve-aydinlatma-metni"
+                        href="/kvkk-ve-aydinlatma-metni"
                         target="_blank"
                       >
                         KVKK metnini{" "}
@@ -492,7 +492,7 @@ export default function ProspectCustomerForm({
                   <FormControl className="bg-white">
                     <Checkbox checked={field.value} onChange={field.onChange}>
                       {" "}
-                      Retroia&apos;nın hizmetlerine ilişkin tanıtım amaçlı
+                      Investrong CRM&apos;in hizmetlerine ilişkin tanıtım amaçlı
                       elektronik iletilere, SMS gönderilerine ve aramalara izin
                       veriyorum.
                     </Checkbox>

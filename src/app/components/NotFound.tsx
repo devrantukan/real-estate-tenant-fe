@@ -29,7 +29,7 @@ export default function NotFound() {
           {/* Quick Actions */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link
-              href="/emlak/konut/satilik/"
+              href="/konut/satilik/"
               className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
             >
               <Building className="w-8 h-8 text-primary-500 mb-3 mx-auto group-hover:scale-110 transition-transform" />
@@ -41,7 +41,7 @@ export default function NotFound() {
               </p>
             </Link>
             <Link
-              href="/emlak/ticari/satilik/"
+              href="/ticari/satilik/"
               className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
             >
               <MapPin className="w-8 h-8 text-primary-500 mb-3 mx-auto group-hover:scale-110 transition-transform" />
@@ -53,7 +53,7 @@ export default function NotFound() {
               </p>
             </Link>
             <Link
-              href="https://www.retroia.com/projeler/"
+              href="/projelerimiz/"
               className="group p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
             >
               <Users className="w-8 h-8 text-primary-500 mb-3 mx-auto group-hover:scale-110 transition-transform" />
@@ -71,25 +71,25 @@ export default function NotFound() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Link
-                href="/emlak/konut/kiralik/"
+                href="/konut/kiralik/"
                 className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-700 hover:text-primary-500 hover:scale-105"
               >
                 Kiralık Konutlar
               </Link>
               <Link
-                href="/emlak/ticari/kiralik/"
+                href="/ticari/kiralik/"
                 className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-700 hover:text-primary-500 hover:scale-105"
               >
                 Kiralık Ticari
               </Link>
               <Link
-                href="/emlak/arsa-arazi/satilik/"
+                href="/arsa-arazi/satilik/"
                 className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-700 hover:text-primary-500 hover:scale-105"
               >
                 Satılık Arsa
               </Link>
               <Link
-                href="/emlak/arsa-arazi/kiralik/"
+                href="/arsa-arazi/kiralik/"
                 className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-gray-700 hover:text-primary-500 hover:scale-105"
               >
                 Kiralık Arsa
@@ -100,7 +100,7 @@ export default function NotFound() {
           {/* Navigation Buttons */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
             <Link
-              href="/emlak/"
+              href="/"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-all duration-200 hover:scale-105"
             >
               <House className="w-5 h-5 mr-2" />

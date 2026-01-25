@@ -12,7 +12,7 @@ export default function HomepageAgentBanner() {
     <>
       <div className="flex mx-6 lg:mx-0 lg:mr-6 flex-col lg:w-full items-start p-6 pt-16 h-72 rounded-xl bg-gradient-to-r from-blue-950 from-40% via-sky-500 via-70% to-sky-200 to-90% relative">
         <Image
-          alt="Retroia Gayrimenkul "
+          alt="Investrong CRM Gayrimenkul "
           src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/danisman-ol.png"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"
@@ -26,7 +26,7 @@ export default function HomepageAgentBanner() {
           </p>
           <Button className="bg-white">
             <Link
-              href="/emlak/gayrimenkul-danismani-basvuru-formu"
+              href="/gayrimenkul-danismani-basvuru-formu"
               className="text-blue-950 font-bold flex flex-row"
             >
               <span className="mr-4">Danışman Ol</span>

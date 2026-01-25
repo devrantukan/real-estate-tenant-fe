@@ -2,7 +2,7 @@ import TypesenseInstantSearchAdapter from "typesense-instantsearch-adapter";
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
-    apiKey: "xyz", // Use the same you've defined in docker-compose
+    apiKey: process.env.NEXT_PUBLIC_TYPESENSE_API_KEY || "xyz",
     nodes: [
       {
         host: process.env.NEXT_PUBLIC_TYPESENSE_HOST || "localhost",

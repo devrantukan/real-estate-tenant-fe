@@ -27,7 +27,7 @@ export default function Share({
 }) {
   const currentPage = usePathname();
   const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://www.retroia.com/emlak";
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.investrong.com";
   const fullUrl = `${baseUrl}${currentPage}`;
   const fullImageUrl = avatarUrl.startsWith("http")
     ? avatarUrl
@@ -110,7 +110,7 @@ export default function Share({
       document.head.appendChild(ogSiteName);
       createdElements.current.push(ogSiteName);
     }
-    ogSiteName.setAttribute("content", "RetroIA");
+    ogSiteName.setAttribute("content", "Investrong CRM");
 
     // Update or create og:type
     let ogType = document.querySelector('meta[property="og:type"]');
@@ -272,7 +272,7 @@ export default function Share({
                   </div>
                 </div>
                 <ShareSocial
-                  url={`${baseUrl.replace("/emlak", "")}${currentPage}`}
+                  url={`${baseUrl}${currentPage}`}
                   socialTypes={["facebook", "twitter", "linkedin", "whatsapp"]}
                 />
               </ModalBody>

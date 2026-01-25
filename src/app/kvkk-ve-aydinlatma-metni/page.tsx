@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = {
-  title: "KVKK ve Aydınlatma Metni | Retroia",
-  description: "Retroia KVKK ve Aydınlatma Metni",
+  title: "KVKK ve Aydınlatma Metni | Investrong CRM",
+  description: "Investrong CRM KVKK ve Aydınlatma Metni",
 };
 
 async function getKVKKContent() {

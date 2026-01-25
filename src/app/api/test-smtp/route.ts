@@ -39,14 +39,14 @@ export async function GET() {
             resolve({ port, type: "tcp", success: false, error: "timeout" });
           });
 
-          tcpSocket.connect(port, "mail.retroia.com");
+          tcpSocket.connect(port, "mail.investrong.com");
         });
 
         results.push(tcpResult);
 
         // Try TLS connection
         const tlsSocket = tls.connect({
-          host: "mail.retroia.com",
+          host: "mail.investrong.com",
           port: port,
           rejectUnauthorized: false,
           timeout: 5000,

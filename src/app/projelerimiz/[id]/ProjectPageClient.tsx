@@ -29,7 +29,7 @@ const ProjectPageClient = ({ params }: ProjectPageClientProps) => {
       try {
         const API_URL =
           process.env.NODE_ENV === "production"
-            ? `/emlak/api/projects/${params.id}/`
+            ? `/api/projects/${params.id}/`
             : `/api/projects/${params.id}`;
 
         const response = await fetch(API_URL);
@@ -54,7 +54,7 @@ const ProjectPageClient = ({ params }: ProjectPageClientProps) => {
         try {
           const API_URL = new URL(
             process.env.NODE_ENV === "production"
-              ? `/emlak/api/officeWorker/${params.agentId}/`
+              ? `/api/officeWorker/${params.agentId}/`
               : `/api/officeWorker/${params.agentId}`,
             window.location.origin
           ).toString();
@@ -142,7 +142,7 @@ const ProjectPageClient = ({ params }: ProjectPageClientProps) => {
             <div className="flex-grow">
               <h3 className="text-base font-semibold mb-2 text-right">
                 <Link
-                  href={`/emlak/ofis/${agent.officeId}/${agent.office.slug}/${agent.role.slug}/${agent.id}/${agent.slug}`}
+                  href={`/ofis/${agent.officeId}/${agent.office.slug}/${agent.role.slug}/${agent.id}/${agent.slug}`}
                 >
                   {agent.name} {agent.surname}
                 </Link>

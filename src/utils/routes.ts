@@ -1,16 +1,10 @@
 /**
- * Adds /emlak prefix to internal routes
+ * Ensures path starts with /
  * @param path - The route path
- * @returns The path with /emlak prefix
+ * @returns The path starting with /
  */
 export const getRoute = (path: string): string => {
-  // If path already starts with /emlak, return as is
-  if (path.startsWith("/emlak")) {
-    return `/${path}/`;
-  }
-
-  // Add /emlak to path, handling both paths with and without leading slash
-  return `/emlak${path.startsWith("/") ? path : `/${path}/`}`;
+  return path.startsWith("/") ? path : `/${path}`;
 };
 
 /**

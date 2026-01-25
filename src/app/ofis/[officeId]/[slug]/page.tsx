@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!office) {
     return {
-      title: "Ofis Bulunamadı | Retroia Gayrimenkul",
+      title: "Ofis Bulunamadı | Investrong CRM Gayrimenkul",
       description: "Aradığınız ofis bulunamadı.",
     };
   }
@@ -56,29 +56,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak"
+      process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com"
     ),
-    title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Retroia`,
+    title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Investrong CRM`,
     description: `${office.name} - ${office.city?.city_name}'de ${brokerCount} gayrimenkul danışmanı ile hizmet veren güvenilir gayrimenkul ofisi. ${locationString} bölgesinde konut, ticari ve arsa araziler için profesyonel danışmanlık.`,
-    keywords: `${office.name}, ${office.city?.city_name} gayrimenkul, ${office.district?.district_name} gayrimenkul, ${office.neighborhood?.neighborhood_name} gayrimenkul, emlak ofisi, gayrimenkul danışmanlığı, ${office.city?.city_name} emlak`,
+    keywords: `${office.name}, ${office.city?.city_name} gayrimenkul, ${office.district?.district_name} gayrimenkul, ${office.neighborhood?.neighborhood_name} gayrimenkul, emlak ofisi, gayrimenkul danışmanlığı, ${office.city?.city_name} emlak, investrong, crm`,
     openGraph: {
-      title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Retroia`,
+      title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Investrong CRM`,
       description: `${office.name} - ${office.city?.city_name}'de ${brokerCount} gayrimenkul danışmanı ile hizmet veren güvenilir gayrimenkul ofisi. ${locationString} bölgesinde konut, ticari ve arsa araziler için profesyonel danışmanlık.`,
       images: office.avatarUrl
         ? [{ url: office.avatarUrl, alt: `${office.name} ofisi` }]
         : [],
-      siteName: "Retroia",
+      siteName: "Investrong CRM",
       locale: "tr_TR",
       type: "website",
       url: `/ofis/${params.officeId}/${params.slug}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Retroia`,
+      title: `${office.name} | ${office.city?.city_name} Gayrimenkul Ofisi | Investrong CRM`,
       description: `${office.name} - ${office.city?.city_name}'de ${brokerCount} gayrimenkul danışmanı ile hizmet veren güvenilir gayrimenkul ofisi. ${locationString} bölgesinde konut, ticari ve arsa araziler için profesyonel danışmanlık.`,
       images: office.avatarUrl ? [office.avatarUrl] : [],
-      creator: "@retroia",
-      site: "@retroia",
+      creator: "@investrong",
+      site: "@investrong",
     },
     alternates: {
       canonical: `/ofis/${params.officeId}/${params.slug}`,

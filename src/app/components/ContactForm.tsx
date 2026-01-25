@@ -23,7 +23,7 @@ export default function ContactForm({ officeId }: { officeId: string }) {
       const API_URL =
         process.env.NODE_ENV === "development"
           ? "/api"
-          : process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+          : process.env.NEXT_PUBLIC_API_URL || "/api";
 
       // Create FormData object
       const formDataObj = new FormData();

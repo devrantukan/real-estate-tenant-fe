@@ -11,7 +11,7 @@ export default function HomepageCustomerBanner() {
     <>
       <div className="flex mx-6 lg:mx-0 lg:ml-6 lg:w-full flex-col items-start p-6  pt-16 h-72  rounded-xl bg-gradient-to-r from-blue-950 from-40% via-sky-500 via-70% to-sky-200 to-90% relative">
         <Image
-          alt="Retroia Gayrimenkul "
+          alt="Investrong CRM Gayrimenkul "
           src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/gayrimenkul-satilik.png"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"
@@ -25,7 +25,7 @@ export default function HomepageCustomerBanner() {
           </p>
           <Button className=" bg-white">
             <Link
-              href="/emlak/gayrimenkullerinizi-satalim-kiralayalim"
+              href="/gayrimenkullerinizi-satalim-kiralayalim"
               className="text-blue-950 font-bold flex flex-row"
             >
               <span className="mr-4">Hemen Başvur</span>

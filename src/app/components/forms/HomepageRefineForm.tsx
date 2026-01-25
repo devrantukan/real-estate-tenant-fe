@@ -114,7 +114,7 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
   const [selectedCity, setSelectedCity] = React.useState("");
   const [selectedCountry, setSelectedCountry] = React.useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
   useEffect(() => {
     async function fetchCountries() {
       try {
@@ -182,11 +182,9 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
   }, [form, propertyType]);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    const baseUrl = `/emlak/${data.propertyType}/${data.contract}${
-      selectedCountry ? `/${selectedCountry}` : ""
-    }${data.city ? `/${data.city}` : ""}${
-      data.district ? `/${data.district}` : ""
-    }${data.neighborhood ? `/${data.neighborhood}` : ""}`;
+    const baseUrl = `/${data.propertyType}/${data.contract}${selectedCountry ? `/${selectedCountry}` : ""
+      }${data.city ? `/${data.city}` : ""}${data.district ? `/${data.district}` : ""
+      }${data.neighborhood ? `/${data.neighborhood}` : ""}`;
 
     // Add min/max as query parameters
     const params = new URLSearchParams();
@@ -194,9 +192,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
     if (data.max) params.append("max", data.max);
 
     // Remove trailing slash and combine with query parameters
-    const finalUrl = `${baseUrl.replace(/\/+$/, "")}${
-      params.toString() ? `?${params.toString()}` : ""
-    }`;
+    const finalUrl = `${baseUrl.replace(/\/+$/, "")}${params.toString() ? `?${params.toString()}` : ""
+      }`;
     router.push(finalUrl);
     toast({
       title: "You submitted the following values:",
@@ -289,7 +286,7 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
                       >
                         {field.value
                           ? cities.find((city) => city.value === field.value)
-                              ?.label
+                            ?.label
                           : "İl Seçiniz"}
                         <ChevronsUpDown className="opacity-50" />
                       </Button>
@@ -356,8 +353,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
                       >
                         {field.value
                           ? districts.find(
-                              (district) => district.value === field.value
-                            )?.label
+                            (district) => district.value === field.value
+                          )?.label
                           : "İlçe Seçiniz"}
                         <ChevronsUpDown className="opacity-50" />
                       </Button>
@@ -428,9 +425,9 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
                       >
                         {field.value
                           ? neighborhoods.find(
-                              (neighborhood) =>
-                                neighborhood.value === field.value
-                            )?.label
+                            (neighborhood) =>
+                              neighborhood.value === field.value
+                          )?.label
                           : "Mahalle Seçiniz"}
                         <ChevronsUpDown className="opacity-50" />
                       </Button>

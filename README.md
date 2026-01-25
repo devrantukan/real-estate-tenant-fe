@@ -75,6 +75,46 @@ The Real Estate Tenant Panel Frontend interacts with the backend services to all
 
    Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
 
+## Search Engine Setup (Typesense)
+
+This project uses Typesense for fast, typo-tolerant search. It is configured to run in a Docker container.
+
+### Configuration
+The following environment variables are required in `.env` (already configured in `docker-compose.yml`):
+- `NEXT_PUBLIC_TYPESENSE_API_KEY`: The API key for Typesense (securely managed).
+- `NEXT_PUBLIC_TYPESENSE_HOST`: Host for client-side access (default: `localhost`).
+- `TYPESENSE_HOST`: Host for server-side access (default: `typesense`).
+
+### Data Indexing
+To populate the search index with data from your database, run the initialization script inside the frontend container:
+
+```bash
+docker exec real-estate-tenant-fe node src/utils/initializeTypesense.js
+```
+
+This script will:
+1. Delete any existing 'posts' collection.
+2. Create a new collection with the correct schema.
+3. Seed it with all 'PUBLISHED' properties from the PostgreSQL database.
+
+## Running with Docker
+
+You can run the application using Docker and Docker Compose for a consistent environment.
+
+1.  **Ensure you have a `.env` file** configured with the required environment variables.
+2.  **Build and start the container:**
+    ```bash
+    docker-compose up --build -d
+    ```
+3.  **Access the application:**
+    Open [http://localhost:3001](http://localhost:3001) in your browser.
+
+4.  **Stopping the container:**
+    ```bash
+    docker-compose down
+    ```
+
+
 ## Project Structure
 
 -   `/src/app`: App Router pages and layouts.

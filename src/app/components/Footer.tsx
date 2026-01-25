@@ -16,45 +16,45 @@ interface propertyPages {
 }
 
 const propertyPages = [
-  { id: 0, page: "Satılık Konutlar", href: "/emlak/konut/satilik/" },
+  { id: 0, page: "Satılık Konutlar", href: "/konut/satilik/" },
   {
     id: 1,
     page: "Satılık Ticari Gayrimenkuller",
-    href: "/emlak/ticari/satilik/",
+    href: "/ticari/satilik/",
   },
-  { id: 2, page: "Satılık Arsalar", href: "/emlak/arsa-arazi/satilik/" },
-  { id: 3, page: "Kiralık Konutlar", href: "/emlak/konut/kiralik/" },
+  { id: 2, page: "Satılık Arsalar", href: "/arsa-arazi/satilik/" },
+  { id: 3, page: "Kiralık Konutlar", href: "/konut/kiralik/" },
   {
     id: 4,
     page: "Kiralık Ticari Gayrimenkuller",
-    href: "/emlak/ticari/kiralik/",
+    href: "/ticari/kiralik/",
   },
-  { id: 5, page: "Kiralık Arsalar", href: "/emlak/arsa-arazi/kiralik/" },
+  { id: 5, page: "Kiralık Arsalar", href: "/arsa-arazi/kiralik/" },
 ];
 
 const cooperatePages = [
-  { id: 0, page: "Ofislerimiz", href: "/emlak/ofislerimiz/" },
-  { id: 1, page: "Danışmanlarımız", href: "/emlak/danismanlarimiz/" },
+  { id: 0, page: "Ofislerimiz", href: "/ofislerimiz/" },
+  { id: 1, page: "Danışmanlarımız", href: "/danismanlarimiz/" },
   {
     id: 2,
     page: "Danışman Ol",
-    href: "/emlak/gayrimenkul-danismani-basvuru-formu/",
+    href: "/gayrimenkul-danismani-basvuru-formu/",
   },
   {
     id: 3,
     page: "Gayrimenkulünüzü Satalım / Kiralayalım",
-    href: "/emlak/gayrimenkullerinizi-satalim-kiralayalim/",
+    href: "/gayrimenkullerinizi-satalim-kiralayalim/",
   },
 ];
 
 const aboutPages = [
-  { id: 0, page: "Biz Kimiz?", href: "/emlak/biz-kimiz/" },
+  { id: 0, page: "Biz Kimiz?", href: "/biz-kimiz/" },
   {
     id: 1,
     page: "KVKK ve Aydınlatma Metni",
-    href: "/emlak/kvkk-ve-aydinlatma-metni/",
+    href: "/kvkk-ve-aydinlatma-metni/",
   },
-  { id: 2, page: "Blog", href: "https://retroia.com/blog/" },
+  { id: 2, page: "Blog", href: "/blog/" },
   // { id: 3, page: "Yasal Uyarı ve Kullanım Koşulları", href: "/team" },
 ];
 
@@ -82,11 +82,11 @@ export default function Footer() {
       <div className="w-full flex lg:flex-row flex-col justify-between">
         <nav aria-label="Social media links" className="flex flex-col h-full">
           <Image
-            src={"/emlak/retroia-logo-dark.png"}
+            src={"/investrong.png"}
             width={128}
             height={96}
-            alt="Retroia Logo"
-            className="mx-auto lg:mx-0 h-[60px] w-auto"
+            alt="Investrong CRM Logo"
+            className="mx-auto lg:mx-0 h-[60px] w-auto object-contain"
           />
           <ul className="flex flex-row flex-nowrap gap-x-4  items-end w-full justify-center lg:justify-normal invisible lg:visible">
             {socialLinks.map(({ id, Icon, href }) => (
@@ -146,7 +146,7 @@ export default function Footer() {
       </div>
       <div className="flex flex-row justify-between items-center mt-4">
         <p className=" text-neutral-900 font-normal">
-          &copy; 2025 Retroia - Her hakkı saklıdır.
+          &copy; 2025 Investrong CRM - Her hakkı saklıdır.
         </p>
         <div className="flex flex-row justify-center items-center">
           <p className=" text-neutral-900 font-normal mr-2">

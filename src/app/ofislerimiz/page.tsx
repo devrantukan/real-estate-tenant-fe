@@ -10,8 +10,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Retroia Gayrimenkul, Real Estate - Ofislerimiz",
-  description: "Retroia Gayrimenkul, Real Estate - Ofislerimiz",
+  title: "Investrong CRM Gayrimenkul, Real Estate - Ofislerimiz",
+  description: "Investrong CRM Gayrimenkul, Real Estate - Ofislerimiz",
 };
 
 const OfficesPage = async () => {
@@ -25,14 +25,14 @@ const OfficesPage = async () => {
     <div>
       <div className="h-[480px] bg-slate-300 lg:m-6 p-4 lg:rounded-xl mb-12 relative">
         <Image
-          alt="Retroia Gayrimenkul "
+          alt="Investrong CRM Gayrimenkul "
           src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/ofisimiz.jpg?t=2024-12-26T00%3A15%3A38.890Z"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"
         />
         <div className="absolute z-30">
           <h1 className="mt-24 text-3xl font-extralight lg:ml-12 ml-6 ">
-            {offices.length} RETROİA OFİSİ
+            {offices.length} INVESTRONG CRM OFİSİ
             <br />
             <span className="font-bold text-xl">
               İÇİNDEN SİZE EN YAKININI BULUN

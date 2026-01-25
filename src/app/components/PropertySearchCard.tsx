@@ -52,8 +52,8 @@ const PropertySearchCard = ({ property, showAvatar }: any) => {
     ? originalUrl.includes("/propertyImages/")
       ? originalUrl.replace("/propertyImages/", "/thumbnails-property-images/")
       : originalUrl.includes("/property-images/")
-      ? originalUrl.replace("/property-images/", "/thumbnails-property-images/")
-      : originalUrl
+        ? originalUrl.replace("/property-images/", "/thumbnails-property-images/")
+        : originalUrl
     : null;
 
   const defaultImageUrl = "/images/placeholder.png";
@@ -74,10 +74,9 @@ const PropertySearchCard = ({ property, showAvatar }: any) => {
       shadow="md"
     >
       <Link
-        className={`hover:text-primary-500 transition-colors justify-between ${
-          showAvatar == true ? "lg:w-4/5" : "lg:w-full"
-        }`}
-        href={`/emlak/portfoy/${property.id}`}
+        className={`hover:text-primary-500 transition-colors justify-between ${showAvatar == true ? "lg:w-4/5" : "lg:w-full"
+          }`}
+        href={`/portfoy/${property.id}`}
       >
         <div className="flex lg:flex-row flex-col w-full m-0">
           <div className="relative">
@@ -134,7 +133,7 @@ const PropertySearchCard = ({ property, showAvatar }: any) => {
       {showAvatar == true && (
         <div className="lg:w-1/5 w-full flex lg:items-center items-start  flex-col  hover:bg-slate-100 hover:cursor-pointer rounded-r-xl ">
           <Link
-            href={`/emlak/ofis/${property.agentOffice.id}/${property.agentOffice.slug}/${property.agentRoleSlug}/${property.agentId}/${property.agentSlug}`}
+            href={`/ofis/${property.agentOffice.id}/${property.agentOffice.slug}/${property.agentRoleSlug}/${property.agentId}/${property.agentSlug}`}
             className="flex  w-full lg:justify-center  items-center  flex-row lg:flex-col lg:my-6 gap-x-2 lg:gap-x-0 "
           >
             <Avatar

@@ -262,14 +262,14 @@ const OfficeTabs = ({ office }: Props) => {
     },
     office: {
       id: 1,
-      name: "Retroia",
-      slug: "retroia",
+      name: "Investrong CRM",
+      slug: "investrong-crm",
     },
     title: "Broker",
     avatarUrl:
       "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/office-images/aytek.jpg",
     phone: "+90 541 214 14 33",
-    email: "aytek@retroia.com",
+    email: "aytek@investrong.com",
     properties: [],
     reviews: [],
   };
@@ -285,14 +285,14 @@ const OfficeTabs = ({ office }: Props) => {
     },
     office: {
       id: 1,
-      name: "Retroia",
-      slug: "retroia",
+      name: "Investrong CRM",
+      slug: "investrong-crm",
     },
     title: "Broker",
     avatarUrl:
       "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/office-images/tuba-ezer.jpg",
     phone: "+90 541 711 2626",
-    email: "tuba@retroia.com",
+    email: "tuba@investrong.com",
     properties: [],
     reviews: [],
   };
@@ -308,14 +308,14 @@ const OfficeTabs = ({ office }: Props) => {
     },
     office: {
       id: 1,
-      name: "Retroia",
-      slug: "retroia",
+      name: "Investrong CRM",
+      slug: "investrong-crm",
     },
     title: "Broker / Manager",
     avatarUrl:
       "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/office-images/candan.jpg",
     phone: "+90 533 667 0091",
-    email: "candan@retroia.com",
+    email: "candan@investrong.com",
     properties: [],
     reviews: [],
   };
@@ -331,14 +331,14 @@ const OfficeTabs = ({ office }: Props) => {
     },
     office: {
       id: 1,
-      name: "Retroia",
-      slug: "retroia",
+      name: "Investrong CRM",
+      slug: "investrong-crm",
     },
     title: "Ofisler Müdürü",
     avatarUrl:
       "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/office-images/seda.jpg",
     phone: "+90 543 213 9998",
-    email: "seda@retroia.com",
+    email: "seda@investrong.com",
     properties: [],
     reviews: [],
   };
@@ -354,14 +354,14 @@ const OfficeTabs = ({ office }: Props) => {
     },
     office: {
       id: 1,
-      name: "Retroia",
-      slug: "retroia",
+      name: "Investrong CRM",
+      slug: "investrong-crm",
     },
     title: "Pazarlama Müdürü",
     avatarUrl:
       "https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/office-images/cihan.jpg",
     phone: "+90 544 464 99 44",
-    email: "cihan@retroia.com",
+    email: "cihan@investrong.com",
     properties: [],
     reviews: [],
   };

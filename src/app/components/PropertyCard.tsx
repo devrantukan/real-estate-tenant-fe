@@ -93,29 +93,29 @@ const PropertyCard = ({ property, showAvatar }: PropertyCardProps) => {
     cardWidth < 500
       ? "object-cover w-full lg:w-auto h-auto lg:max-w-[190px] lg:min-w-[190px] lg:min-h-[130px] lg:max-h-[130px] bg-gray-200"
       : cardWidth < 700 && cardWidth > 500
-      ? "object-cover w-full lg:w-auto h-auto lg:max-w-[220px] lg:min-w-[220px] lg:min-h-[150px] lg:max-h-[150px] bg-gray-200"
-      : "object-cover w-full lg:w-auto h-auto lg:max-w-[240px] lg:min-w-[240px] lg:min-h-[160px] lg:max-h-[160px] bg-gray-200";
+        ? "object-cover w-full lg:w-auto h-auto lg:max-w-[220px] lg:min-w-[220px] lg:min-h-[150px] lg:max-h-[150px] bg-gray-200"
+        : "object-cover w-full lg:w-auto h-auto lg:max-w-[240px] lg:min-w-[240px] lg:min-h-[160px] lg:max-h-[160px] bg-gray-200";
 
   const titleClassName =
     cardWidth < 500
       ? "text-xs"
       : cardWidth < 700 && cardWidth > 500
-      ? "text-sm"
-      : "text-base";
+        ? "text-sm"
+        : "text-base";
 
   const breadcrumbClassName =
     cardWidth < 500
       ? "text-[0.6rem]"
       : cardWidth < 700 && cardWidth > 500
-      ? "text-xs"
-      : "text-xs";
+        ? "text-xs"
+        : "text-xs";
 
   const cardClassName =
     cardWidth < 500
       ? "w-full flex lg:flex-row mb-4 min-h-[130px] lg:max-h-[130px]"
       : cardWidth < 700 && cardWidth > 500
-      ? "w-full flex lg:flex-row mb-4 min-h-[150px] lg:max-h-[150px]"
-      : "w-full flex lg:flex-row mb-4 min-h-[150px] lg:max-h-[150px]";
+        ? "w-full flex lg:flex-row mb-4 min-h-[150px] lg:max-h-[150px]"
+        : "w-full flex lg:flex-row mb-4 min-h-[150px] lg:max-h-[150px]";
 
   // Sort images by order field and get the first image
   const sortedImages =
@@ -126,8 +126,8 @@ const PropertyCard = ({ property, showAvatar }: PropertyCardProps) => {
     ? originalUrl.includes("/propertyImages/")
       ? originalUrl.replace("/propertyImages/", "/thumbnails-property-images/")
       : originalUrl.includes("/property-images/")
-      ? originalUrl.replace("/property-images/", "/thumbnails-property-images/")
-      : originalUrl
+        ? originalUrl.replace("/property-images/", "/thumbnails-property-images/")
+        : originalUrl
     : null;
 
   const defaultImageUrl = "/images/placeholder.png";
@@ -144,10 +144,9 @@ const PropertyCard = ({ property, showAvatar }: PropertyCardProps) => {
   return (
     <Card ref={cardRef} className={cardClassName} shadow="md">
       <Link
-        className={`hover:text-primary-500 transition-colors justify-between ${
-          showAvatar == true ? "lg:w-4/5" : "lg:w-full"
-        }`}
-        href={`/emlak/portfoy/${property.id}`}
+        className={`hover:text-primary-500 transition-colors justify-between ${showAvatar == true ? "lg:w-4/5" : "lg:w-full"
+          }`}
+        href={`/portfoy/${property.id}`}
       >
         <div className="flex lg:flex-row flex-col w-full m-0">
           <div className="relative w-full lg:w-auto">
@@ -186,7 +185,7 @@ const PropertyCard = ({ property, showAvatar }: PropertyCardProps) => {
             <div className="bg-gradient-to-br from-slate-50 to-slate-200 px-4 flex justify-start items-center h-1/3 w-full">
               <div className="text-2xl lining-nums font-semibold tracking-wider w-full">
                 {property.discountedPrice > 0 &&
-                property.price != property.discountedPrice ? (
+                  property.price != property.discountedPrice ? (
                   <div className="flex items-center gap-2 w-full">
                     <span className="text-2xl font-bold text-primary">
                       <PriceDisplay price={property.discountedPrice} />
@@ -218,7 +217,7 @@ const PropertyCard = ({ property, showAvatar }: PropertyCardProps) => {
       {showAvatar == true && (
         <div className="lg:w-1/5 w-full flex lg:items-center items-start  flex-col my-auto  hover:cursor-pointer rounded-l-none rounded-xl hover:bg-gradient-to-br hover:from-slate-50 hover:to-slate-200">
           <Link
-            href={`/emlak/ofis/${property.agent.office.id}/${property.agent.office.slug}/${property.agent.role.slug}/${property.agentId}/${property.agent.slug}`}
+            href={`/ofis/${property.agent.office.id}/${property.agent.office.slug}/${property.agent.role.slug}/${property.agentId}/${property.agent.slug}`}
             className="flex  w-full lg:justify-center  items-center  flex-row lg:flex-col lg:my-6 gap-x-2 lg:gap-x-0"
           >
             <Avatar

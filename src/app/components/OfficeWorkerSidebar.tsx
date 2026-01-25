@@ -26,9 +26,8 @@ interface Props {
 
 const OfficeWorkerSidebar = ({ officeWorker }: Props) => {
   const imageAlt = useMemo(() => {
-    return `${officeWorker.name} ${officeWorker.surname} - ${
-      officeWorker.title || "Gayrimenkul Danışmanı"
-    }`;
+    return `${officeWorker.name} ${officeWorker.surname} - ${officeWorker.title || "Gayrimenkul Danışmanı"
+      }`;
   }, [officeWorker.name, officeWorker.surname, officeWorker.title]);
 
   const handleMapsClick = () => {
@@ -55,7 +54,7 @@ const OfficeWorkerSidebar = ({ officeWorker }: Props) => {
       <p className="text-lg font-normal text-center">{officeWorker.title}</p>
       <p className="text-lg font-bold text-center text-blue-950 hover:text-blue-600">
         <Link
-          href={`/emlak/ofis/${officeWorker.office.id}/${officeWorker.office.slug}`}
+          href={`/ofis/${officeWorker.office.id}/${officeWorker.office.slug}`}
         >
           {officeWorker.office.name}
         </Link>

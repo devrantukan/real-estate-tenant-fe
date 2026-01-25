@@ -58,35 +58,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .filter(Boolean)
     .join(", ");
 
-  const title = `${officeWorker.name} ${officeWorker.surname} - ${
-    officeWorker.title || "Gayrimenkul Danışmanı"
-  } - ${officeWorker.office?.name || ""}`;
-  const description = `${officeWorker.title || "Gayrimenkul Danışmanı"} ${
-    officeWorker.name
-  } ${officeWorker.surname} - ${
-    officeWorker.office?.name || ""
-  } - ${locationString}`;
-  const keywords = `${officeWorker.title || "Gayrimenkul Danışmanı"}, ${
-    officeWorker.name
-  } ${officeWorker.surname}, ${officeWorker.office?.name || ""}, ${
-    officeWorker.office?.city?.city_name || ""
-  }, ${
-    officeWorker.office?.district?.district_name || ""
-  }, emlak danışmanı, gayrimenkul danışmanı`;
-  const ogTitle = `${officeWorker.name} ${officeWorker.surname} - ${
-    officeWorker.title || "Gayrimenkul Danışmanı"
-  }`;
+  const title = `${officeWorker.name} ${officeWorker.surname} - ${officeWorker.title || "Gayrimenkul Danışmanı"
+    } - ${officeWorker.office?.name || ""}`;
+  const description = `${officeWorker.title || "Gayrimenkul Danışmanı"} ${officeWorker.name
+    } ${officeWorker.surname} - ${officeWorker.office?.name || ""
+    } - ${locationString}`;
+  const keywords = `${officeWorker.title || "Gayrimenkul Danışmanı"}, ${officeWorker.name
+    } ${officeWorker.surname}, ${officeWorker.office?.name || ""}, ${officeWorker.office?.city?.city_name || ""
+    }, ${officeWorker.office?.district?.district_name || ""
+    }, emlak danışmanı, gayrimenkul danışmanı`;
+  const ogTitle = `${officeWorker.name} ${officeWorker.surname} - ${officeWorker.title || "Gayrimenkul Danışmanı"
+    }`;
   const ogDescription = officeWorker.about
     ? stripHtml(officeWorker.about).slice(0, 80) + "..."
     : description;
-  const ogImageAlt = `${officeWorker.name} ${officeWorker.surname} - ${
-    officeWorker.title || "Gayrimenkul Danışmanı"
-  } - ${officeWorker.office?.name || ""}`;
+  const ogImageAlt = `${officeWorker.name} ${officeWorker.surname} - ${officeWorker.title || "Gayrimenkul Danışmanı"
+    } - ${officeWorker.office?.name || ""}`;
   const twitterDescription = ogDescription;
 
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://www.retroia.com/emlak"
+      process.env.NEXT_PUBLIC_SITE_URL || "https://www.investrong.com"
     ),
     title,
     description,
@@ -96,13 +88,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: ogDescription,
       images: officeWorker.avatarUrl
         ? [
-            {
-              url: officeWorker.avatarUrl,
-              alt: ogImageAlt,
-            },
-          ]
+          {
+            url: officeWorker.avatarUrl,
+            alt: ogImageAlt,
+          },
+        ]
         : [],
-      siteName: "Retroia",
+      siteName: "Investrong CRM",
       locale: "tr_TR",
       type: "website",
       url: `/ofis/${params.officeId}/${params.slug}/${params.title}/${params.workerId}/${params.workerSlug}`,
@@ -112,8 +104,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: ogTitle,
       description: twitterDescription,
       images: officeWorker.avatarUrl ? [officeWorker.avatarUrl] : [],
-      creator: "@retroia",
-      site: "@retroia",
+      creator: "@investrong",
+      site: "@investrong",
     },
     alternates: {
       canonical: `/ofis/${params.officeId}/${params.slug}/${params.title}/${params.workerId}/${params.workerSlug}`,
