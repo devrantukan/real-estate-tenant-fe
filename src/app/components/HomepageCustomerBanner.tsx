@@ -9,10 +9,10 @@ import Image from "next/image";
 export default function HomepageCustomerBanner() {
   return (
     <>
-      <div className="flex mx-6 lg:mx-0 lg:ml-6 lg:w-full flex-col items-start p-6  pt-16 h-72  rounded-xl bg-gradient-to-r from-blue-950 from-40% via-sky-500 via-70% to-sky-200 to-90% relative">
+      <div className="flex mx-6 lg:mx-0 lg:ml-6 lg:w-full flex-col items-start p-6  pt-16 h-72  rounded-xl relative">
         <Image
           alt="Investrong CRM Gayrimenkul "
-          src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/gayrimenkul-satilik.png"
+          src="/images/banner_left_house.png"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"
         />

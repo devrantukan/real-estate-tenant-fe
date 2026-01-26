@@ -16,11 +16,15 @@ export default function supabaseLoader({
 
   // If it's a local path starting with '/', serve from public directory
   if (src.startsWith("/")) {
-    return `${process.env.NEXT_PUBLIC_BASE_URL}/${src}`;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+    // Avoid double slashes if baseUrl has trailing slash
+    if (baseUrl.endsWith("/") && src.startsWith("/")) {
+      return `${baseUrl}${src.substring(1)}`;
+    }
+    return `${baseUrl}${src}`;
   }
 
   // Otherwise, treat it as a Supabase storage path
-  return `https://${supabaseUrl}/storage/v1/render/image/public/${src}?width=${width}&quality=${
-    quality || 75
-  }`;
+  return `https://${supabaseUrl}/storage/v1/render/image/public/${src}?width=${width}&quality=${quality || 75
+    }`;
 }

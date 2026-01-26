@@ -1,5 +1,6 @@
 import { Metadata, Viewport } from "next";
-import { Raleway } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { Providers } from "./components/providers";
 import Appbar from "./components/Appbar";
@@ -10,13 +11,6 @@ import Footer from "./components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import { CurrencyProvider } from "./context/CurrencyContext";
 import MetaPixel from "./components/MetaPixel";
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-raleway",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -84,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${raleway.variable} notranslate`}
+      className={`${GeistSans.variable} ${GeistMono.variable} notranslate`}
       translate="no"
     >
       <head>
@@ -132,7 +126,7 @@ export default function RootLayout({
           <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         )}
       </head>
-      <body className={`${raleway.className} font-sans`}>
+      <body className={`font-sans antialiased`}>
         <CurrencyProvider>
           <MetaPixel />
           <Providers>

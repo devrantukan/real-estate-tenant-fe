@@ -52,7 +52,7 @@ const NoResults = connectStateResults(({ searchResults, searching }) => {
             display: none !important;
           }
         `}</style>
-        
+
         <div className="text-center mb-12 w-full max-w-4xl mx-auto">
           <div className="text-3xl font-bold text-gray-800 mb-4">
             Arama sonucu bulunamadı
@@ -74,12 +74,12 @@ const NoResults = connectStateResults(({ searchResults, searching }) => {
           <h3 className="text-xl font-semibold mb-4 text-gray-700">
             Benzer İlanlar
           </h3>
-          <InstantSearch 
-            searchClient={searchClient} 
+          <InstantSearch
+            searchClient={searchClient}
             indexName={postCollection}
           >
-            <Configure 
-              hitsPerPage={3} 
+            <Configure
+              hitsPerPage={3}
               filters="type:konut"
             />
             <Hits hitComponent={BlogHitComponent} />
@@ -121,7 +121,7 @@ const MapResults = connectStateResults(({ searchResults }) => {
   };
 
   // Validate and find first valid location
-  const validLocations = searchResults.hits.filter(hit => 
+  const validLocations = searchResults.hits.filter(hit =>
     hit.location &&
     typeof hit.location.latitude === 'number' &&
     typeof hit.location.longitude === 'number'
@@ -170,7 +170,7 @@ const ScrollableResults = ({ searchResults }) => {
     if (searchResults?.page) {
       // Get viewport height
       const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-      
+
       // Get element position
       const element = searchResultsRef.current;
       const elementPosition = element?.getBoundingClientRect().top;
@@ -191,13 +191,13 @@ const ScrollableResults = ({ searchResults }) => {
 
 const ConnectedScrollableResults = connectStateResults(ScrollableResults);
 
-const CustomRangeInput = connectRange(({ 
-  currentRefinement, 
-  refine, 
-  min, 
-  max, 
+const CustomRangeInput = connectRange(({
+  currentRefinement,
+  refine,
+  min,
+  max,
   attribute,
-  className 
+  className
 }) => {
   const [localMin, setLocalMin] = useState(currentRefinement.min || min);
   const [localMax, setLocalMax] = useState(currentRefinement.max || max);
@@ -256,13 +256,13 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
 
   let url = `type:=${type}&&contract:=${contract}`
 
-  if(country) {
+  if (country) {
     url += `&&country:=${country}`;
-    if(city) {
+    if (city) {
       url += `&&city:=${city}`;
-      if(district) {
+      if (district) {
         url += `&&district:=${district}`;
-        if(neighborhood) {
+        if (neighborhood) {
           url += `&&neighborhood:=${neighborhood}`;
         }
       }
@@ -323,41 +323,41 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
       />
       <ConnectedScrollableResults />
       <div className="flex flex-col lg:flex-row">
-        <div className={`bg-white mr-4 gap-y-2 p-4 rounded-xl ${isOpen ? '' : 'hidden'} lg:block`}>
+        <div className={`sidebar-filters bg-white text-gray-900 mr-4 gap-y-2 p-4 rounded-xl ${isOpen ? '' : 'hidden'} lg:block`}>
           <ClearRefinements
             translations={{
               reset: 'Tüm Filtreleri Temizle',
             }}
           />
           <h3>Hizmet Tipi</h3>
-          <RefinementList 
-            attribute="contract" 
+          <RefinementList
+            attribute="contract"
             className="mb-4"
             defaultRefinement={contract ? [contract] : []}
-            transformItems={items => 
+            transformItems={items =>
               items.map(item => ({
                 ...item,
                 isRefined: item.label === contract
               }))
             }
-          /> 
+          />
           <h3>Gayrimenkul Tipi</h3>
-          <RefinementList 
-            attribute="type" 
+          <RefinementList
+            attribute="type"
             className="mb-4"
             defaultRefinement={type ? [type] : []}
-            transformItems={items => 
+            transformItems={items =>
               items.map(item => ({
                 ...item,
                 isRefined: item.label === type
               }))
             }
           />
-          <h3>Ülke</h3> 
-          <RefinementList 
-            attribute="country" 
-            className="mb-4" 
-            searchable={true}   
+          <h3>Ülke</h3>
+          <RefinementList
+            attribute="country"
+            className="mb-4"
+            searchable={true}
             translations={{
               showMore(expanded) {
                 return expanded ? 'Show less' : 'Show more';
@@ -367,13 +367,13 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               resetTitle: 'Clear your search query.',
               placeholder: 'Arama...',
             }}
-            transformItems={transformItems} 
+            transformItems={transformItems}
           />
           <h3>Şehir</h3>
-          <RefinementList 
-            attribute="city" 
-            className="mb-4" 
-            searchable={true} 
+          <RefinementList
+            attribute="city"
+            className="mb-4"
+            searchable={true}
             transformItems={transformItems}
             translations={{
               showMore(expanded) {
@@ -386,10 +386,10 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
             }}
           />
           <h3>İlçe</h3>
-          <RefinementList 
-            attribute="district" 
-            className="mb-4"  
-            searchable={true} 
+          <RefinementList
+            attribute="district"
+            className="mb-4"
+            searchable={true}
             transformItems={transformItems}
             translations={{
               showMore(expanded) {
@@ -402,10 +402,10 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
             }}
           />
           <h3>Mahalle</h3>
-          <RefinementList 
-            attribute="neighborhood"  
+          <RefinementList
+            attribute="neighborhood"
             className="mb-4"
-            searchable={true}  
+            searchable={true}
             transformItems={transformItems}
             translations={{
               showMore(expanded) {
@@ -416,31 +416,31 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               resetTitle: 'Clear your search query.',
               placeholder: 'Arama...',
             }}
-          /> 
+          />
           <h3>Oda sayısı</h3>
-          <RefinementList 
-            attribute="bedrooms" 
-            className="mb-4" 
+          <RefinementList
+            attribute="bedrooms"
+            className="mb-4"
             transformItems={items => items
               .sort((a, b) => parseInt(a.label) - parseInt(b.label))
             }
           />
           <h3>Banyo sayısı</h3>
-          <RefinementList 
-            attribute="bathrooms" 
-            className="mb-4" 
+          <RefinementList
+            attribute="bathrooms"
+            className="mb-4"
             transformItems={items => items
               .sort((a, b) => parseInt(a.label) - parseInt(b.label))
             }
           />
           <h3>Fiyat</h3>
-          <CustomRangeInput 
+          <CustomRangeInput
             attribute="price"
             min={min ? parseInt(min) : undefined}
             max={max ? parseInt(max) : undefined}
             className="mb-4"
           />
-          <SearchBox 
+          <SearchBox
             translations={{
               placeholder: 'Ara...',
               submitTitle: 'Aramayı başlat',
@@ -451,28 +451,28 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
 
         <div className="flex w-full" >
           <main style={{ display: "flex", flexDirection: "column", gap: "1rem" }} className="w-full ">
-            <div style={{ padding: "2%" }}  className="w-full">
-              <Stats 
-                className="mb-2"  
+            <div style={{ padding: "2%" }} className="w-full">
+              <Stats
+                className="mb-2"
                 translations={{
                   stats(nbHits, processingTimeMS) {
                     return `${nbHits.toLocaleString('tr-TR')} sonuç bulundu ${processingTimeMS.toLocaleString('tr-TR')} milisaniyede`;
                   }
                 }}
               />
-              <Button 
-                onClick={handleClick} 
+              <Button
+                onClick={handleClick}
                 className="lg:hidden flex items-center gap-2 mb-2"
               >
                 {isOpen ? 'Filtreleri Gizle' : 'Sonuçları Filtrele'}
                 {isOpen ? <CaretUp size={20} /> : <CaretDown size={20} />}
               </Button>
               <SortBy
-                container = '#sort-by'
+                container='#sort-by'
                 defaultRefinement={postCollection}
                 items={[
                   { value: postCollection, label: "Yayınlanma Tarihi En Yeni" },
-                  
+
                   { value: `${postCollection}/sort/published_date:asc`, label: "Yayınlanma Tarihi En Eski" },
                   { value: `${postCollection}/sort/title:asc`, label: "Başlık A-Z" },
                   { value: `${postCollection}/sort/title:desc`, label: "Başlık Z-A" },

@@ -10,10 +10,10 @@ import Image from "next/image";
 export default function HomepageAgentBanner() {
   return (
     <>
-      <div className="flex mx-6 lg:mx-0 lg:mr-6 flex-col lg:w-full items-start p-6 pt-16 h-72 rounded-xl bg-gradient-to-r from-blue-950 from-40% via-sky-500 via-70% to-sky-200 to-90% relative">
+      <div className="flex mx-6 lg:mx-0 lg:mr-6 flex-col lg:w-full items-start p-6 pt-16 h-72 rounded-xl relative">
         <Image
           alt="Investrong CRM Gayrimenkul "
-          src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/danisman-ol.png"
+          src="/images/banner_right_consultant.png"
           className="object-cover opacity-100 rounded-xl"
           layout="fill"
         />

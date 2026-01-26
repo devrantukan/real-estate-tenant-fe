@@ -40,6 +40,7 @@
     "dompurify": "^3.2.3",
     "embla-carousel-react": "^8.5.1",
     "framer-motion": "^11.0.8",
+    "geist": "^1.5.1",
     "google-map-react": "^2.2.1",
     "google-maps-react-markers": "^2.0.11",
     "instantsearch.css": "^8.5.1",

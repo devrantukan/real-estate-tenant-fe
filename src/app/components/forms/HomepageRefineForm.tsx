@@ -218,8 +218,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <FormControl className="bg-white">
-                    <SelectTrigger>
+                  <FormControl>
+                    <SelectTrigger className="!bg-[#111827] !text-white">
                       <SelectValue placeholder="Hizmet Tipi Seçiniz" />
                     </SelectTrigger>
                   </FormControl>
@@ -245,8 +245,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
                   onValueChange={(value) => setSelectedCountry(value)}
                   defaultValue={field.value}
                 >
-                  <FormControl className="bg-white">
-                    <SelectTrigger>
+                  <FormControl>
+                    <SelectTrigger className="!bg-[#111827] !text-white">
                       <SelectValue placeholder="Ülke seçiniz" />
                     </SelectTrigger>
                   </FormControl>
@@ -485,8 +485,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
               render={({ field }) => (
                 <FormItem className="mt-0 space-y-0 flex flex-col">
                   <FormLabel className="mt-0 mb-2 text-white">Min</FormLabel>
-                  <FormControl className="bg-white">
-                    <Input placeholder="min" {...field} />
+                  <FormControl>
+                    <Input className="!bg-[#111827] !text-white" placeholder="min" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -498,8 +498,8 @@ export function HomepageRefineForm({ propertyType }: { propertyType: string }) {
               render={({ field }) => (
                 <FormItem className="mt-0 space-y-0 flex flex-col">
                   <FormLabel className="mt-0 mb-2 text-white">Max</FormLabel>
-                  <FormControl className="bg-white">
-                    <Input placeholder="max" {...field} />
+                  <FormControl>
+                    <Input className="!bg-[#111827] !text-white" placeholder="max" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
