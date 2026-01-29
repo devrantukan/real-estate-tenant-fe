@@ -3,6 +3,8 @@ import axios from "axios";
 import prisma from "@/lib/prisma";
 import slugify from "slugify";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest, response: NextResponse) {
   const projectLocations = await prisma.propertyLocation.findMany({
     include: {

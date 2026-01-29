@@ -3,6 +3,8 @@ import axios from "axios";
 import prisma from "@/lib/prisma";
 import slugify from "slugify";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest, response: NextResponse) {
   // Fetch all cities regardless of property status
   const cities = await prisma.city.findMany({

@@ -3,6 +3,8 @@ import ProjectCard from "@/app/components/ProjectCard";
 import { Metadata } from "next";
 import Hero from "./Hero";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
     title: "Projelerimiz | Investrong CRM",
     description: "En yeni ve prestijli gayrimenkul projelerimizi keşfedin. Yatırımlık ve oturumluk daireler, villalar ve ticari alanlar.",

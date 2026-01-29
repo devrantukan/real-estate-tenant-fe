@@ -47,10 +47,10 @@ const Appbar = () => {
           >
             <Image
               src="/investrong.png"
-              width={125}
-              height={80}
+              width={160}
+              height={96}
               alt="Investrong CRM Logo"
-              className="h-[40px] w-auto object-contain"
+              className="h-[48px] w-auto object-contain"
               priority
             />
           </Link>

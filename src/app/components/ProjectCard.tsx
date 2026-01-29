@@ -81,7 +81,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                   src={image.url}
                   alt={`${project.name} - Image ${index + 1}`}
                   fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-[2000ms]"
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-&lsqb;2000ms&rsqb;"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority={index === 0}
                 />

@@ -80,19 +80,19 @@ export default function Footer() {
       className="flex flex-col border border-t-gray-300 text-sm font-medium p-6 w-full w-screen-sm md:w-screen-md lg:text-left text-center "
     >
       <div className="w-full flex lg:flex-row flex-col justify-between">
-        <nav aria-label="Social media links" className="flex flex-col h-full">
+        <nav aria-label="Social media links" className="flex flex-col h-full items-center lg:items-start">
           <Image
             src={"/investrong.png"}
-            width={128}
-            height={96}
+            width={160}
+            height={100}
             alt="Investrong CRM Logo"
-            className="mx-auto lg:mx-0 h-[60px] w-auto object-contain"
+            className="h-[56px] w-auto object-contain mb-6"
           />
-          <ul className="flex flex-row flex-nowrap gap-x-4  items-end w-full justify-center lg:justify-normal invisible lg:visible">
+          <ul className="flex flex-row flex-nowrap gap-x-6 items-center w-full justify-center lg:justify-start">
             {socialLinks.map(({ id, Icon, href }) => (
               <li key={`${id}-social`}>
                 <a href={href} className={classes.socialLink}>
-                  <Icon className={classes.socialIcon} />
+                  <Icon className="w-6 h-6 text-gray-400 hover:text-white transition-colors" />
                 </a>
               </li>
             ))}

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import net from "net";
 import tls from "tls";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     console.log("Testing SMTP connection...");

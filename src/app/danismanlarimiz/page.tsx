@@ -3,6 +3,8 @@ import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import OfficeWorkerCard from "../components/OfficeWorkerCard";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Investrong CRM Gayrimenkul, Real Estate - Danışmanlarımız",
   description: "Investrong CRM Gayrimenkul, Real Estate - Danışmanlarımız",
