@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
 import Image from "next/image";
-import { Button, Card } from "@nextui-org/react";
 import { Envelope, PhoneCall } from "@phosphor-icons/react/dist/ssr";
 
 interface Props {
@@ -12,35 +10,42 @@ interface Props {
 
 const OfficeWorkerCard = ({ officeWorker, index }: Props) => {
   return (
-    <Card
-      key={index}
-      className="min-w-[300px] min-h-[400px] h-auto w-full px-4 m-2 pb-2"
-    >
+    <div className="group relative w-full max-w-sm mx-auto">
       <Link
         href={`/ofis/${officeWorker.office.id}/${officeWorker.office.slug}/${officeWorker.role.slug}/${officeWorker.id}/${officeWorker.slug}`}
+        className="block"
       >
-        <Image
-          src={`${officeWorker.avatarUrl}`}
-          alt={""}
-          width={640}
-          height={800}
-          className="object-fill cursor-pointer w-[70%]  mx-auto mb-4 "
-        />
-        <h2 className="text-lg font-semibold text-left text-blue-950 mb-2">
-          {officeWorker.name} {officeWorker.surname}
-        </h2>
-        <p className="font-semilight text-sm">{officeWorker.role?.title}</p>
-        <div className="flex flex-row items-center gap-x-1 text-gray-600 text-sm">
-          <Envelope width={20} height={20} />
-          {officeWorker.email.replace("retroia.com", "investrong.com")}
+        <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
+          <Image
+            src={officeWorker.avatarUrl ? officeWorker.avatarUrl : "/profile.png"}
+            alt={`${officeWorker.name} ${officeWorker.surname}`}
+            fill
+            className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          {/* Subtle overlay on hover */}
+          <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
         </div>
-        <div className="flex flex-row items-center gap-x-1 mb-2 text-gray-600 text-sm">
-          <PhoneCall width={20} height={20} />
-          {officeWorker.phone}
+        
+        <div className="text-center">
+          <h2 className="text-xl font-medium text-gray-900 mb-1 tracking-tight">
+            {officeWorker.name} {officeWorker.surname}
+          </h2>
+          <p className="text-xs uppercase tracking-widest text-gray-500 mb-3 font-medium">
+            {officeWorker.role?.title}
+          </p>
+          
+          <div className="flex justify-center gap-4 text-gray-400 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+            <div className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <Envelope size={18} />
+            </div>
+            <div className="flex items-center gap-1 hover:text-gray-900 transition-colors">
+              <PhoneCall size={18} />
+            </div>
+          </div>
         </div>
-        <p className="font-semibold text-md">{officeWorker.office?.name}</p>
       </Link>
-    </Card>
+    </div>
   );
 };
 

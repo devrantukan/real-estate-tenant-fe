@@ -1,12 +1,7 @@
-import { ImagesSlider } from "@/app/components/ImageSlider";
-import PageTitle from "@/app/components/pageTitle";
+import Hero from "./Hero";
 import prisma from "@/lib/prisma";
-import { Card } from "@nextui-org/react";
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import OfficeWorkerCard from "../components/OfficeWorkerCard";
 import { Metadata } from "next";
+import OfficeWorkerCard from "../components/OfficeWorkerCard";
 
 export const metadata: Metadata = {
   title: "Investrong CRM Gayrimenkul, Real Estate - Danışmanlarımız",
@@ -18,7 +13,7 @@ const OfficeWorkersPage = async () => {
   try {
     officeWorkers = await prisma.officeWorker.findMany({
       where: {
-        roleId: { in: [7, 6, 3, 2] },
+        roleId: { in: [14, 7, 6, 3, 2] },
       },
       include: {
         properties: true,
@@ -31,67 +26,66 @@ const OfficeWorkersPage = async () => {
     });
   } catch (error) {
     console.error("Prisma error during build/render:", error);
-    // Return empty list instead of failing build
-    return <div>Danışmanlar şu anda yüklenemiyor.</div>;
+    return <div className="p-12 text-center text-gray-500">Danışmanlar şu anda yüklenemiyor.</div>;
   }
 
-  if (!officeWorkers || officeWorkers.length === 0) return <div>Danışman bulunamadı.</div>;
+  if (!officeWorkers || officeWorkers.length === 0) return <div className="p-12 text-center text-gray-500">Danışman bulunamadı.</div>;
+  
+  // Categorize workers
+  const management = officeWorkers.filter(w => ["broker-manager", "ofisler-muduru"].includes(w.role?.slug));
+  const leaders = officeWorkers.filter(w => w.role?.slug === "takim-lideri-gayrimenkul-danismani");
+  const agents = officeWorkers.filter(w => ["gayrimenkul-danismani", "agent"].includes(w.role?.slug));
+
   return (
-    <div>
-      <div className="h-[480px] bg-slate-300 lg:m-6 p-4 lg:rounded-xl mb-12 relative">
-        <Image
-          alt="Investrong CRM Gayrimenkul "
-          src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/ofisimiz.jpg?t=2024-12-26T00%3A15%3A38.890Z"
-          className="object-cover opacity-100 rounded-xl"
-          layout="fill"
-        />
-        <div className="absolute z-30">
-          <h1 className="mt-24 ml-12 text-3xl font-extralight">
-            {officeWorkers.length} DANIŞMAN İÇİNDEN <br />
-            <span className="font-bold text-xl">SİZE EN UYGUNU BULUN</span>
-          </h1>
-        </div>
-      </div>
+    <div className="bg-white min-h-screen pb-24">
+      {/* Hero Section */}
+      <Hero />
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-6 mx-6 gap-y-6 mb-6  place-items-center">
-        {officeWorkers
-          .filter(
-            (worker: { slug: string; role: { slug: string } }) =>
-              worker.role.slug === "broker-manager"
-          )
-          .map((worker, index: number) => (
-            <OfficeWorkerCard officeWorker={worker} key={index} index={index} />
-          ))}
-        {officeWorkers
-          .filter(
-            (worker: { slug: string; role: { slug: string } }) =>
-              worker.role.slug === "ofisler-muduru"
-          )
-          .map((worker, index: number) => (
-            <OfficeWorkerCard officeWorker={worker} key={index} index={index} />
-          ))}
-      </div>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 mt-24 space-y-32">
+        {/* Management Section */}
+        {management.length > 0 && (
+          <section>
+              <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-gray-200 pb-6">
+                <h2 className="text-3xl font-light tracking-tight text-gray-900">Yönetim Kurulu</h2>
+                <span className="text-sm uppercase tracking-widest text-gray-400 mt-2 md:mt-0">Liderlik</span>
+              </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 transition-all">
+                {management.map((worker, index) => (
+                  <OfficeWorkerCard officeWorker={worker} key={worker.id} index={index} />
+                ))}
+             </div>
+          </section>
+        )}
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-6 mx-6 gap-y-6 mb-6  place-items-center">
-        {officeWorkers
-          .filter(
-            (worker: { slug: string; role: { slug: string } }) =>
-              worker.role.slug === "takim-lideri-gayrimenkul-danismani"
-          )
-          .map((worker, index: number) => (
-            <OfficeWorkerCard officeWorker={worker} key={index} index={index} />
-          ))}
-      </div>
+        {/* Team Leaders Section */}
+        {leaders.length > 0 && (
+          <section>
+              <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-gray-200 pb-6">
+                <h2 className="text-3xl font-light tracking-tight text-gray-900">Takım Liderleri</h2>
+                <span className="text-sm uppercase tracking-widest text-gray-400 mt-2 md:mt-0">Kıdemli Danışmanlar</span>
+              </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                {leaders.map((worker, index) => (
+                  <OfficeWorkerCard officeWorker={worker} key={worker.id} index={index} />
+                ))}
+             </div>
+          </section>
+        )}
 
-      <div className="grid lg:grid-cols-4  md:grid-cols-2  grid-cols-1 gap-x-6 mx-6 gap-y-6 mb-6 place-items-center">
-        {officeWorkers
-          .filter(
-            (worker: { slug: string; role: { slug: string } }) =>
-              worker.role.slug === "gayrimenkul-danismani"
-          )
-          .map((worker, index: number) => (
-            <OfficeWorkerCard officeWorker={worker} key={index} index={index} />
-          ))}
+        {/* Agents Section */}
+        {agents.length > 0 && (
+          <section>
+              <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-gray-200 pb-6">
+                <h2 className="text-3xl font-light tracking-tight text-gray-900">Gayrimenkul Danışmanları</h2>
+                <span className="text-sm uppercase tracking-widest text-gray-400 mt-2 md:mt-0">Ekibimiz</span>
+              </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+                {agents.map((worker, index) => (
+                  <OfficeWorkerCard officeWorker={worker} key={worker.id} index={index} />
+                ))}
+             </div>
+          </section>
+        )}
       </div>
     </div>
   );

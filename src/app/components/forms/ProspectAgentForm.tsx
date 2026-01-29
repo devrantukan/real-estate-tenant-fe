@@ -397,6 +397,7 @@ export default function ProspectAgentForm({
                       <Select
                         {...field}
                         label="Şehir"
+                        variant="bordered"
                         placeholder="Şehir Seçiniz"
                         className="w-full"
                         value={city}
@@ -404,7 +405,7 @@ export default function ProspectAgentForm({
                         disabled={!country}
                       >
                         {cityOptions.map((c) => (
-                          <SelectItem key={c} value={c}>
+                          <SelectItem key={c} value={c} className="text-gray-900">
                             {c}
                           </SelectItem>
                         ))}
@@ -422,6 +423,7 @@ export default function ProspectAgentForm({
                     <FormControl className="bg-white">
                       <Select
                         label="İlçe"
+                        variant="bordered"
                         placeholder="İlçe Seçiniz"
                         className="w-full"
                         value={district}
@@ -429,7 +431,7 @@ export default function ProspectAgentForm({
                         disabled={!city}
                       >
                         {districtOptions.map((d) => (
-                          <SelectItem key={d} value={d}>
+                          <SelectItem key={d} value={d} className="text-gray-900">
                             {d}
                           </SelectItem>
                         ))}
@@ -452,13 +454,14 @@ export default function ProspectAgentForm({
                     <FormControl className="bg-white">
                       <Select
                         label="Eğitim Durumunuz"
+                        variant="bordered"
                         placeholder="Lütfen Seçiniz"
                         className="max-w-sm"
                         value={educationLevel}
                         onChange={handleEducationLevelSelectionChange}
                       >
                         {educationLevelList.map((level) => (
-                          <SelectItem key={level.key} value={level.key}>
+                          <SelectItem key={level.key} value={level.key} className="text-gray-900">
                             {level.label}
                           </SelectItem>
                         ))}
@@ -476,6 +479,7 @@ export default function ProspectAgentForm({
                     <FormControl className="bg-white">
                       <Select
                         label="Mesleki Durumunuz"
+                        variant="bordered"
                         placeholder="Lütfen Seçiniz"
                         className="max-w-sm"
                         value={occupation}
@@ -485,6 +489,7 @@ export default function ProspectAgentForm({
                           <SelectItem
                             key={occupation.key}
                             value={occupation.key}
+                            className="text-gray-900"
                           >
                             {occupation.label}
                           </SelectItem>
@@ -505,7 +510,7 @@ export default function ProspectAgentForm({
                     <Checkbox
                       checked={field.value}
                       onChange={field.onChange}
-                      className=" font-semibold text-blue-950 mt-8"
+                      className=" font-semibold text-gray-900 mt-8"
                     >
                       {" "}
                       <Link
@@ -517,6 +522,7 @@ export default function ProspectAgentForm({
                         }}
                         href="/kvkk-ve-aydinlatma-metni"
                         target="_blank"
+                        className="text-blue-600 hover:underline"
                       >
                         KVKK metnini{" "}
                       </Link>
@@ -534,10 +540,11 @@ export default function ProspectAgentForm({
                 <FormItem>
                   <FormControl className="bg-white">
                     <Checkbox checked={field.value} onChange={field.onChange}>
-                      {" "}
-                      Investrong CRM&apos;in hizmetlerine ilişkin tanıtım amaçlı
-                      elektronik iletilere, SMS gönderilerine ve aramalara izin
-                      veriyorum.
+                      <span className="text-gray-900">
+                        Investrong CRM&apos;in hizmetlerine ilişkin tanıtım amaçlı
+                        elektronik iletilere, SMS gönderilerine ve aramalara izin
+                        veriyorum.
+                      </span>
                     </Checkbox>
                   </FormControl>
                   <FormMessage />

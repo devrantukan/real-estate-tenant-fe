@@ -118,5 +118,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  return <ProjectDetail project={project} />;
+  return (
+    <main className="min-h-screen bg-white">
+      <ProjectDetail project={project} />
+    </main>
+  );
 }

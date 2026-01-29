@@ -31,23 +31,19 @@ export const ImagesSlider = ({
   );
   const imageUrls = sortedImages.map((img) => img.url);
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === imageUrls.length ? 0 : prevIndex + 1
     );
-  };
+  }, [imageUrls.length]);
 
-  const handlePrevious = () => {
+  const handlePrevious = React.useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? imageUrls.length - 1 : prevIndex - 1
     );
-  };
+  }, [imageUrls.length]);
 
-  useEffect(() => {
-    loadImages();
-  }, []);
-
-  const loadImages = () => {
+  const loadImages = React.useCallback(() => {
     setLoading(true);
     const loadPromises = imageUrls.map((image) => {
       return new Promise((resolve, reject) => {
@@ -64,7 +60,11 @@ export const ImagesSlider = ({
         setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
-  };
+  }, [imageUrls]);
+
+  useEffect(() => {
+    loadImages();
+  }, [loadImages]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -89,7 +89,7 @@ export const ImagesSlider = ({
       window.removeEventListener("keydown", handleKeyDown);
       clearInterval(interval);
     };
-  }, []);
+  }, [autoplay, handleNext, handlePrevious]);
 
   const slideVariants = {
     initial: {

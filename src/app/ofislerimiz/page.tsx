@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import OfficeCard from "../components/OfficeCard";
 import { Metadata } from "next";
+import Hero from "./Hero";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -21,29 +22,23 @@ const OfficesPage = async () => {
     },
   });
   if (!offices) return notFound();
+  
   return (
-    <div>
-      <div className="h-[480px] bg-slate-300 lg:m-6 p-4 lg:rounded-xl mb-12 relative">
-        <Image
-          alt="Investrong CRM Gayrimenkul "
-          src="https://inegzzkuttzsznxfbsmp.supabase.co/storage/v1/object/public/siteImages/ofisimiz.jpg?t=2024-12-26T00%3A15%3A38.890Z"
-          className="object-cover opacity-100 rounded-xl"
-          layout="fill"
-        />
-        <div className="absolute z-30">
-          <h1 className="mt-24 text-3xl font-extralight lg:ml-12 ml-6 ">
-            {offices.length} INVESTRONG CRM OFİSİ
-            <br />
-            <span className="font-bold text-xl">
-              İÇİNDEN SİZE EN YAKININI BULUN
-            </span>
-          </h1>
-        </div>
-      </div>
-      <div className="m-6 grid lg:grid-cols-3 grid-rows-1 gap-y-6">
-        {offices.map((office, index) => (
-          <OfficeCard key={index} office={office} officeId={office.id} />
-        ))}
+    <div className="bg-white min-h-screen pb-24">
+      <Hero />
+      
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 mt-24">
+         <section>
+             <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-gray-200 pb-6">
+                <h2 className="text-3xl font-light tracking-tight text-gray-900">Ofislerimiz</h2>
+                <span className="text-sm uppercase tracking-widest text-gray-400 mt-2 md:mt-0">Bizi Ziyaret Edin</span>
+             </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                {offices.map((office, index) => (
+                  <OfficeCard key={index} office={office} officeId={office.id} />
+                ))}
+             </div>
+         </section>
       </div>
     </div>
   );

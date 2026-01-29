@@ -30,7 +30,7 @@ const Appbar = () => {
 
   return (
     <Navbar
-      className="shadow-md bg-blue-950  w-full flex justify-between"
+      className="shadow-sm bg-white/80 backdrop-blur-md border-b border-gray-100 w-full flex justify-between fixed top-0"
       maxWidth={"full"}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
@@ -38,7 +38,7 @@ const Appbar = () => {
       <NavbarContent justify="center" className="w-full">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden text-white"
+          className="sm:hidden text-blue-950"
         />
         <NavbarBrand className="w-full flex lg:justify-start justify-center mr-12">
           <Link
@@ -57,12 +57,12 @@ const Appbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4 text-white" justify="end">
+      <NavbarContent className="hidden sm:flex gap-8 text-blue-950 font-medium" justify="end">
         <Dropdown>
           <NavbarItem>
             <DropdownTrigger>
               <Button
-                className="bg-transparent text-md text-white p-0 data-[hover=true]:bg-transparent"
+                className="bg-transparent text-md text-blue-950 p-0 data-[hover=true]:bg-transparent font-medium"
                 variant="light"
               >
                 Portföylerimiz
@@ -111,14 +111,14 @@ const Appbar = () => {
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <NavbarItem isActive={pathname === getRoute("/projelerimiz")}>
+        <NavbarItem isActive={pathname === getRoute("/projelerimiz")} className="hover:text-primary transition-colors">
           <Link href="/projelerimiz">Projelerimiz</Link>
         </NavbarItem>
 
-        <NavbarItem isActive={pathname === getRoute("/ofislerimiz")}>
+        <NavbarItem isActive={pathname === getRoute("/ofislerimiz")} className="hover:text-primary transition-colors">
           <Link href={getRoute("/ofislerimiz/")}>Ofislerimiz</Link>
         </NavbarItem>
-        <NavbarItem isActive={pathname === getRoute("/danismanlarimiz")}>
+        <NavbarItem isActive={pathname === getRoute("/danismanlarimiz")} className="hover:text-primary transition-colors">
           <Link
             href={getRoute("/danismanlarimiz/")}
             {...(pathname === getRoute("/danismanlarimiz")
@@ -132,6 +132,7 @@ const Appbar = () => {
           isActive={
             pathname === getRoute("/gayrimenkul-danismani-basvuru-formu")
           }
+          className="hover:text-primary transition-colors"
         >
           <Link
             {...(pathname === getRoute("/gayrimenkul-danismani-basvuru-formu")
@@ -146,6 +147,7 @@ const Appbar = () => {
           isActive={
             pathname === getRoute("/gayrimenkullerinizi-satalim-kiralayalim")
           }
+          className="hover:text-primary transition-colors"
         >
           <Link
             {...(pathname ===

@@ -1,6 +1,6 @@
 export async function getLocationInfo() {
   try {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
     const response = await fetch(`${API_URL}/location-info/`);
     if (!response.ok) {
       throw new Error("Failed to fetch location info");

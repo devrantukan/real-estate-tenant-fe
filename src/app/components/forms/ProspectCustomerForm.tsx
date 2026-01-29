@@ -321,8 +321,8 @@ export default function ProspectCustomerForm({
                       defaultValue={field.value}
                     >
                       <div className="flex flex-row gap-x-4">
-                        <Radio value="rental">Kiralık</Radio>
-                        <Radio value="forSale">Satılık</Radio>
+                        <Radio value="rental"><span className="text-gray-900">Kiralık</span></Radio>
+                        <Radio value="forSale"><span className="text-gray-900">Satılık</span></Radio>
                       </div>
                     </RadioGroup>
                   </FormControl>
@@ -342,9 +342,9 @@ export default function ProspectCustomerForm({
                       defaultValue={field.value}
                     >
                       <div className="flex flex-row gap-x-4">
-                        <Radio value="residential">Konut</Radio>
-                        <Radio value="commercial">Ticari</Radio>
-                        <Radio value="land">Arsa ve Arazi</Radio>
+                        <Radio value="residential"><span className="text-gray-900">Konut</span></Radio>
+                        <Radio value="commercial"><span className="text-gray-900">Ticari</span></Radio>
+                        <Radio value="land"><span className="text-gray-900">Arsa ve Arazi</span></Radio>
                       </div>
                     </RadioGroup>
                   </FormControl>
@@ -363,6 +363,7 @@ export default function ProspectCustomerForm({
                       <Select
                         {...field}
                         label="Şehir"
+                        variant="bordered"
                         placeholder="Şehir Seçiniz"
                         className="w-full"
                         value={city}
@@ -370,7 +371,7 @@ export default function ProspectCustomerForm({
                         disabled={!country}
                       >
                         {cityOptions.map((c) => (
-                          <SelectItem key={c} value={c}>
+                          <SelectItem key={c} value={c} className="text-gray-900">
                             {c}
                           </SelectItem>
                         ))}
@@ -388,6 +389,7 @@ export default function ProspectCustomerForm({
                     <FormControl className="bg-white">
                       <Select
                         label="İlçe"
+                        variant="bordered"
                         placeholder="İlçe Seçiniz"
                         className="w-full"
                         value={district}
@@ -395,7 +397,7 @@ export default function ProspectCustomerForm({
                         disabled={!city}
                       >
                         {districtOptions.map((d) => (
-                          <SelectItem key={d} value={d}>
+                          <SelectItem key={d} value={d} className="text-gray-900">
                             {d}
                           </SelectItem>
                         ))}
@@ -462,7 +464,7 @@ export default function ProspectCustomerForm({
                     <Checkbox
                       checked={field.value}
                       onChange={field.onChange}
-                      className=" font-semibold text-blue-950 mt-8"
+                      className=" font-semibold text-gray-900 mt-8"
                     >
                       {" "}
                       <Link
@@ -474,6 +476,7 @@ export default function ProspectCustomerForm({
                         }}
                         href="/kvkk-ve-aydinlatma-metni"
                         target="_blank"
+                        className="text-blue-600 hover:underline"
                       >
                         KVKK metnini{" "}
                       </Link>
@@ -491,10 +494,11 @@ export default function ProspectCustomerForm({
                 <FormItem>
                   <FormControl className="bg-white">
                     <Checkbox checked={field.value} onChange={field.onChange}>
-                      {" "}
-                      Investrong CRM&apos;in hizmetlerine ilişkin tanıtım amaçlı
-                      elektronik iletilere, SMS gönderilerine ve aramalara izin
-                      veriyorum.
+                      <span className="text-gray-900">
+                        Investrong CRM&apos;in hizmetlerine ilişkin tanıtım amaçlı
+                        elektronik iletilere, SMS gönderilerine ve aramalara izin
+                        veriyorum.
+                      </span>
                     </Checkbox>
                   </FormControl>
                   <FormMessage />

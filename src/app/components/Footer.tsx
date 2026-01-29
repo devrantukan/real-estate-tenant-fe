@@ -67,7 +67,7 @@ const socialLinks = [
 
 const classes = {
   pageLink:
-    "text-neutral-600 inline-flex hover:text-neutral-900 focus:outline-none focus:rounded focus:ring focus:ring-indigo-200 mb-2",
+    "text-gray-300 inline-flex hover:text-white focus:outline-none focus:rounded focus:ring focus:ring-indigo-200 mb-2",
   socialIcon: "link--md link--secondary",
   socialLink:
     "inline-flex focus:outline-none focus:rounded focus:ring focus:ring-indigo-200",
@@ -103,7 +103,7 @@ export default function Footer() {
           className="flex lg:flex-row flex-col gap-8 mt-4"
         >
           <div>
-            <p className="mb-4  text-blue-950">GAYRİMENKULLER</p>
+            <p className="mb-4  text-white">GAYRİMENKULLER</p>
             <ul className="flex flex-col flex-nowrap gap-x-4 md:gap-x-6 font-light">
               {propertyPages.map(({ id, page, href }) => (
                 <li key={`${id}-${page}`}>
@@ -114,7 +114,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 text-blue-950">BİRLİKTE ÇALIŞALIM</p>
+            <p className="mb-4 text-white">BİRLİKTE ÇALIŞALIM</p>
             <ul className="flex flex-col flex-nowrap gap-x-4 md:gap-x-6 font-light">
               {cooperatePages.map(({ id, page, href }) => (
                 <li key={`${id}-${page}`}>
@@ -124,7 +124,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-blue-950">HAKKIMIZDA</p>
+            <p className="mb-4 text-white">HAKKIMIZDA</p>
             <ul className="flex flex-col flex-nowrap gap-x-4 md:gap-x-6 font-light">
               {aboutPages.map(({ id, page, href }) => (
                 <li key={`${id}-${page}`}>
@@ -145,11 +145,11 @@ export default function Footer() {
         </nav>
       </div>
       <div className="flex flex-row justify-between items-center mt-4">
-        <p className=" text-neutral-900 font-normal">
+        <p className=" text-gray-400 font-normal">
           &copy; 2025 Investrong CRM - Her hakkı saklıdır.
         </p>
         <div className="flex flex-row justify-center items-center">
-          <p className=" text-neutral-900 font-normal mr-2">
+          <p className=" text-gray-400 font-normal mr-2">
             Technology by{" "}
             <Link href="https://tukanft.com/tr" target="_blank">
               TukanFT
