@@ -13,25 +13,64 @@ import {
   connectStateResults,
   ClearRefinements,
   connectRange,
+  connectHits,
 } from "react-instantsearch-dom";
 import typesenseInstantsearchAdapter from "../../lib/typesense"; // adjust the path based on your directory structure
 import PropertySearchCard from "../components/PropertySearchCard";
 import 'instantsearch.css/themes/satellite.css';
 import { SearchDrawer } from "./SearchDrawer";
 import { Button } from "@nextui-org/react";
-import { CaretUp, CaretDown } from "@phosphor-icons/react";
+import { CaretUp, CaretDown, Funnel } from "@phosphor-icons/react";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Modal } from "@nextui-org/react";
 
+// Add custom styles for the refinement list and inputs
+const customStyles = `
+  .ais-RefinementList-labelText {
+    font-size: 0.875rem;
+    color: #475569;
+  }
+  .ais-RefinementList-item--selected .ais-RefinementList-labelText {
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .ais-RefinementList-count {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border-radius: 9999px;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  .ais-RefinementList-checkbox {
+    border-radius: 0.25rem;
+    border-color: #cbd5e1;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+  .premium-header {
+    font-family: var(--font-geist-sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+`;
+
 const searchClient = typesenseInstantsearchAdapter.searchClient;
 
-const BlogHitComponent = ({ hit }) => {
-  return (
-    <div className=" w-full">
-      <PropertySearchCard property={hit} showAvatar={true} key={hit.id} />
-    </div>
-  );
-};
+const CustomHits = connectHits(({ hits }) => (
+  <div className="flex flex-col gap-4 w-full">
+    {hits.map((hit, index) => (
+      <div className="w-full" key={hit.id}>
+        <PropertySearchCard property={hit} showAvatar={true} index={index} />
+      </div>
+    ))}
+  </div>
+));
 
 const NoResultsStateResults = connectStateResults(({ searchResults }) => {
   const hasResults = searchResults && searchResults.nbHits !== 0;
@@ -109,10 +148,14 @@ const MapResults = connectStateResults(({ searchResults }) => {
   // Debug log
   //console.log('Search results locations:', searchResults.hits.map(hit => hit.location));
 
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
   });
+
+  if (loadError) {
+    return <div className="w-full h-[300px] bg-gray-100 flex items-center justify-center rounded-lg text-gray-500">Harita yüklenemedi.</div>;
+  }
 
   const mapContainerStyle = {
     width: '100%',
@@ -222,14 +265,14 @@ const CustomRangeInput = connectRange(({
           value={localMin || ''}
           onChange={(e) => setLocalMin(parseInt(e.target.value))}
           placeholder="Min"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded text-gray-700 placeholder:text-gray-500"
         />
         <input
           type="number"
           value={localMax || ''}
           onChange={(e) => setLocalMax(parseInt(e.target.value))}
           placeholder="Max"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded text-gray-700 placeholder:text-gray-500"
         />
       </div>
       <button type="submit" className="bg-blue-500 text-white p-2 rounded">
@@ -322,14 +365,20 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
         typoTolerance={true}
       />
       <ConnectedScrollableResults />
-      <div className="flex flex-col lg:flex-row">
-        <div className={`sidebar-filters bg-white text-gray-900 mr-4 gap-y-2 p-4 rounded-xl ${isOpen ? '' : 'hidden'} lg:block`}>
-          <ClearRefinements
-            translations={{
-              reset: 'Tüm Filtreleri Temizle',
-            }}
-          />
-          <h3>Hizmet Tipi</h3>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <style dangerouslySetInnerHTML={{ __html: customStyles }} />
+        <div className={`sidebar-filters bg-white border border-slate-100 shadow-sm w-full lg:w-[280px] shrink-0 p-6 rounded-2xl h-fit ${isOpen ? '' : 'hidden'} lg:block sticky top-24`}>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-slate-800">Filtreler</h2>
+            <ClearRefinements
+              translations={{
+                reset: 'Temizle',
+              }}
+              className="text-xs text-red-500 hover:text-red-700 font-medium"
+            />
+          </div>
+
+          <h3 className="premium-header">Hizmet Tipi</h3>
           <RefinementList
             attribute="contract"
             className="mb-4"
@@ -341,7 +390,9 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               }))
             }
           />
-          <h3>Gayrimenkul Tipi</h3>
+
+          <div className="w-full h-px bg-slate-100 my-4"></div>
+          <h3 className="premium-header">Gayrimenkul Tipi</h3>
           <RefinementList
             attribute="type"
             className="mb-4"
@@ -353,71 +404,80 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               }))
             }
           />
-          <h3>Ülke</h3>
-          <RefinementList
-            attribute="country"
-            className="mb-4"
-            searchable={true}
-            translations={{
-              showMore(expanded) {
-                return expanded ? 'Show less' : 'Show more';
-              },
-              noResults: 'No results',
-              submitTitle: 'Submit your search query.',
-              resetTitle: 'Clear your search query.',
-              placeholder: 'Arama...',
-            }}
-            transformItems={transformItems}
-          />
-          <h3>Şehir</h3>
-          <RefinementList
-            attribute="city"
-            className="mb-4"
-            searchable={true}
-            transformItems={transformItems}
-            translations={{
-              showMore(expanded) {
-                return expanded ? 'Show less' : 'Show more';
-              },
-              noResults: 'No results',
-              submitTitle: 'Submit your search query.',
-              resetTitle: 'Clear your search query.',
-              placeholder: 'Arama...',
-            }}
-          />
-          <h3>İlçe</h3>
-          <RefinementList
-            attribute="district"
-            className="mb-4"
-            searchable={true}
-            transformItems={transformItems}
-            translations={{
-              showMore(expanded) {
-                return expanded ? 'Show less' : 'Show more';
-              },
-              noResults: 'No results',
-              submitTitle: 'Submit your search query.',
-              resetTitle: 'Clear your search query.',
-              placeholder: 'Arama...',
-            }}
-          />
-          <h3>Mahalle</h3>
-          <RefinementList
-            attribute="neighborhood"
-            className="mb-4"
-            searchable={true}
-            transformItems={transformItems}
-            translations={{
-              showMore(expanded) {
-                return expanded ? 'Show less' : 'Show more';
-              },
-              noResults: 'No results',
-              submitTitle: 'Submit your search query.',
-              resetTitle: 'Clear your search query.',
-              placeholder: 'Arama...',
-            }}
-          />
-          <h3>Oda sayısı</h3>
+
+          <div className="w-full h-px bg-slate-100 my-4"></div>
+          <h3 className="premium-header">Konum</h3>
+          <div className="flex flex-col gap-4">
+            <RefinementList
+              attribute="country"
+              className="mb-4"
+              searchable={true}
+              translations={{
+                showMore(expanded) {
+                  return expanded ? 'Show less' : 'Show more';
+                },
+                noResults: 'No results',
+                submitTitle: 'Submit your search query.',
+                resetTitle: 'Clear your search query.',
+                placeholder: 'Arama...',
+              }}
+              transformItems={transformItems}
+            />
+
+            {/* <h3 className="premium-header">Şehir</h3> */}
+            <RefinementList
+              attribute="city"
+              className="mb-4"
+              searchable={true}
+              transformItems={transformItems}
+              translations={{
+                showMore(expanded) {
+                  return expanded ? 'Show less' : 'Show more';
+                },
+                noResults: 'No results',
+                submitTitle: 'Submit your search query.',
+                resetTitle: 'Clear your search query.',
+                placeholder: 'Arama...',
+              }}
+            />
+
+            {/* <h3 className="premium-header">İlçe</h3> */}
+            <RefinementList
+              attribute="district"
+              className="mb-4"
+              searchable={true}
+              transformItems={transformItems}
+              translations={{
+                showMore(expanded) {
+                  return expanded ? 'Show less' : 'Show more';
+                },
+                noResults: 'No results',
+                submitTitle: 'Submit your search query.',
+                resetTitle: 'Clear your search query.',
+                placeholder: 'Arama...',
+              }}
+            />
+
+            {/* <h3 className="premium-header">Mahalle</h3> */}
+            <RefinementList
+              attribute="neighborhood"
+              className="mb-4"
+              searchable={true}
+              transformItems={transformItems}
+              translations={{
+                showMore(expanded) {
+                  return expanded ? 'Show less' : 'Show more';
+                },
+                noResults: 'No results',
+                submitTitle: 'Submit your search query.',
+                resetTitle: 'Clear your search query.',
+                placeholder: 'Arama...',
+              }}
+            />
+          </div>
+
+          <div className="w-full h-px bg-slate-100 my-4"></div>
+          <h3 className="premium-header">Yatak Odası</h3>
           <RefinementList
             attribute="bedrooms"
             className="mb-4"
@@ -425,7 +485,8 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               .sort((a, b) => parseInt(a.label) - parseInt(b.label))
             }
           />
-          <h3>Banyo sayısı</h3>
+
+          <h3 className="premium-header">Banyo Sayısı</h3>
           <RefinementList
             attribute="bathrooms"
             className="mb-4"
@@ -433,7 +494,9 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               .sort((a, b) => parseInt(a.label) - parseInt(b.label))
             }
           />
-          <h3>Fiyat</h3>
+
+          <div className="w-full h-px bg-slate-100 my-4"></div>
+          <h3 className="premium-header">Fiyat Aralığı</h3>
           <CustomRangeInput
             attribute="price"
             min={min ? parseInt(min) : undefined}
@@ -450,8 +513,8 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
         </div>
 
         <div className="flex w-full" >
-          <main style={{ display: "flex", flexDirection: "column", gap: "1rem" }} className="w-full ">
-            <div style={{ padding: "2%" }} className="w-full">
+          <main className="w-full flex flex-col gap-6">
+            <div className="w-full bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col lg:flex-row justify-between items-center gap-4">
               <Stats
                 className="mb-2"
                 translations={{
@@ -485,7 +548,7 @@ const BlogSearchComponent = ({ type, contract, country, city, district, neighbor
               <MapResults />
             </div>
             <div id="search-container">
-              <Hits hitComponent={BlogHitComponent} />
+              <CustomHits />
               <PaginationWithResults />
             </div>
           </main>

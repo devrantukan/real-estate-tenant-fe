@@ -12,8 +12,11 @@ export async function generateMetadata({
   params: { id: string };
 }): Promise<Metadata> {
   try {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "/emlak/api";
-    const response = await fetch(`${API_URL}/properties/${params.id}/`, {
+    // For server-side metadata generation, construct absolute URL
+    const baseUrl = typeof window === 'undefined' 
+      ? `http://localhost:${process.env.PORT || 3001}`
+      : '';
+    const response = await fetch(`${baseUrl}/api/properties/${params.id}`, {
       next: { revalidate: 3600 },
     });
 

@@ -382,7 +382,7 @@ const PropertyPageClient = ({ params }: PropertyPageClientProps) => {
     : property.images[0].url;
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-20 bg-gray-50 min-h-screen">
       <div className="p-4 lg:p-6 pb-0">
         <BreadCrumb
           location={{

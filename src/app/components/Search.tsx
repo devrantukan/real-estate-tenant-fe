@@ -41,7 +41,7 @@ const Search = ({
   // }, 1000);
 
   return (
-    <div className="p-4 bg-gray-50/50 w-full min-h-screen">
+    <div className="p-4 bg-gray-50/50 w-full min-h-screen pt-24">
       <BlogSearchComponent
         type={type}
         contract={contract}

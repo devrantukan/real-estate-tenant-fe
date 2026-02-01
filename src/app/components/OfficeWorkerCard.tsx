@@ -22,6 +22,7 @@ const OfficeWorkerCard = ({ officeWorker, index }: Props) => {
             fill
             className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            unoptimized={!officeWorker.avatarUrl}
           />
           {/* Subtle overlay on hover */}
           <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />

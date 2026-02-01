@@ -87,6 +87,7 @@ export default function Footer() {
             height={100}
             alt="Investrong CRM Logo"
             className="h-[56px] w-auto object-contain mb-6"
+            unoptimized
           />
           <ul className="flex flex-row flex-nowrap gap-x-6 items-center w-full justify-center lg:justify-start">
             {socialLinks.map(({ id, Icon, href }) => (

@@ -32,16 +32,7 @@ const HomepageRefineTabs = () => {
   });
 
   return (
-    <div className="flex flex-col w-full z-30 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold text-left text-white  mb-4">
-        Doğru Gayrimenkulün Olduğu Yerde
-      </h1>
-      <h1 className="text-xl mb-8 font-normal text-left text-white">
-        Hayallerinizdeki gayrimenkulü bulmanıza yardımcı olurken, en karlı{" "}
-        <br />
-        yatırımı da yapmanızı sağlamak için doğru mülk nerede ise biz oradayız.
-      </h1>
-      <div className="flex flex-col justify-between lg:h-[400px] lg:w-[40%]  h-auto ">
+      <div className="w-full h-auto">
         <div className="flex flex-col">
           <Tabs
             aria-label="Options"
@@ -129,7 +120,6 @@ const HomepageRefineTabs = () => {
             </Tab>
           </Tabs>
         </div>
-      </div>
     </div>
   );
 };

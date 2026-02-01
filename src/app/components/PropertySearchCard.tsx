@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@nextui-org/react";
 import Image from "next/image";
 import { Prisma } from "@prisma/client";
@@ -6,7 +8,7 @@ import { Avatar } from "@nextui-org/react";
 import { useEffect, useState, useRef } from "react";
 import PriceDisplay from "./PriceDisplay";
 
-const PropertySearchCard = ({ property, showAvatar }: any) => {
+const PropertySearchCard = ({ property, showAvatar, index }: any) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [cardWidth, setCardWidth] = useState(0);
 
@@ -14,7 +16,6 @@ const PropertySearchCard = ({ property, showAvatar }: any) => {
     const updateWidth = () => {
       if (cardRef.current) {
         const width = cardRef.current.getBoundingClientRect().width;
-        //  console.log("Current width:", width);
         setCardWidth(width);
       }
     };
@@ -32,123 +33,134 @@ const PropertySearchCard = ({ property, showAvatar }: any) => {
     return () => observer.disconnect();
   }, []);
 
-  const imageClassName =
-    cardWidth < 700
-      ? "object-cover w-full lg:w-auto h-auto lg:max-w-[220px] lg:min-w-[220px] lg:min-h-[150px] lg:max-h-[150px] bg-gray-200"
-      : "object-cover w-full lg:w-auto h-auto lg:max-w-[240px] lg:min-w-[240px] lg:min-h-[160px] lg:max-h-[160px] bg-gray-200";
-  cardWidth < 400
-    ? "object-cover w-full lg:w-auto h-auto lg:max-w-[200px] lg:min-w-[200px] lg:min-h-[130px] lg:max-h-[150px] bg-gray-200"
-    : "object-cover w-full lg:w-auto h-auto lg:max-w-[220px] lg:min-w-[220px] lg:min-h-[150px] lg:max-h-[160px] bg-gray-200";
+  // Premium card styling
+  const cardClassName = "group w-full flex flex-col lg:flex-row bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-slate-100 ease-in-out h-auto lg:h-[200px]";
+  
+  const imgContainerStyle = "relative w-full lg:w-[320px] h-[220px] lg:h-full shrink-0 overflow-hidden";
+  const imgStyle = "object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500";
 
-  // Sort images by order field and get the first image
-  const sortedImages =
-    property.images?.sort(
-      (a: { order?: number }, b: { order?: number }) =>
-        (a.order ?? 0) - (b.order ?? 0)
-    ) || [];
-  const originalUrl = sortedImages[0]?.url;
-
-  const thumbnailUrl = originalUrl
-    ? originalUrl.includes("/propertyImages/")
-      ? originalUrl.replace("/propertyImages/", "/thumbnails-property-images/")
-      : originalUrl.includes("/property-images/")
-        ? originalUrl.replace("/property-images/", "/thumbnails-property-images/")
-        : originalUrl
-    : null;
-
-  const defaultImageUrl = "/images/placeholder.png";
-
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const target = e.target as HTMLImageElement;
-    if (target.src !== originalUrl) {
-      target.src = originalUrl || defaultImageUrl;
-    } else if (target.src !== defaultImageUrl) {
-      target.src = defaultImageUrl;
-    }
-  };
+  const displayImage = property.images?.[0]?.url || "/images/placeholder.png";
+  console.log("PropertySearchCard rendering:", { id: property.id, displayImage });
 
   return (
     <Card
       ref={cardRef}
-      className="w-full flex lg:flex-row mb-4 min-h-[150px] lg:max-h-[150px]"
-      shadow="md"
+      className={cardClassName}
+      shadow="none"
     >
       <Link
-        className={`hover:text-primary-500 transition-colors justify-between ${showAvatar == true ? "lg:w-4/5" : "lg:w-full"
-          }`}
+        className="flex lg:flex-row flex-col w-full h-full relative"
         href={`/portfoy/${property.id}`}
       >
-        <div className="flex lg:flex-row flex-col w-full m-0">
-          <div className="relative">
-            <Image
-              src={
-                thumbnailUrl ||
-                originalUrl ||
-                defaultImageUrl ||
-                "/images/placeholder.png"
-              }
-              className={imageClassName}
-              alt={property.images?.[0]?.name || "No Image"}
-              width={240}
-              height={160}
-              onError={handleImageError}
-            />
-            {property.discountedPrice > 0 && (
-              <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap">
-                İNDİRİMLİ
-              </span>
-            )}
+        {/* Image Section */}
+        <div className={imgContainerStyle}>
+          <Image
+            src={displayImage}
+            priority={index !== undefined && index < 2}
+            className={imgStyle}
+            alt={property.title || "Property Image"}
+            width={400}
+            height={300}
+            unoptimized={displayImage === "/images/placeholder.png"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
+          
+          {property.discountedPrice > 0 && (
+            <span className="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+              İndirimli
+            </span>
+          )}
+          
+          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            {property.contract === 'satilik' ? 'Satılık' : 'Kiralık'}
           </div>
-          <div className="flex flex-col w-full">
-            <div className="p-4 h-2/3">
-              <p className="text-slate-600 mb-1 text-xs w-full">
-                {property.country} / {property.city} / {property.district} /{" "}
-                {property.neighborhood}
-              </p>
-              <p className="text-primary-600 text-[0.9rem] font-bold">
-                {property.title}
-              </p>
+        </div>
+
+        {/* Content Section */}
+        <div className="flex flex-col justify-between p-5 w-full bg-white">
+          <div>
+            <div className="flex justify-between items-start mb-2">
+              <span className="text-primary-600 text-xs font-bold tracking-widest uppercase">
+                {property.type}
+              </span>
+              <span className="text-slate-400 text-xs font-medium flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Bugün
+              </span>
             </div>
-            <div className="bg-gradient-to-br from-slate-50 to-slate-200 px-4 flex justify-start items-center h-1/3 w-full">
-              <div className="text-2xl lining-nums font-semibold tracking-wider w-full">
-                {property.discountedPrice > 0 ? (
-                  <div className="flex items-center gap-2 w-full">
-                    <span className="text-2xl font-bold text-primary">
-                      <PriceDisplay price={property.discountedPrice} />
-                    </span>
-                    <span className="text-lg line-through text-gray-400">
-                      <PriceDisplay price={property.price} />
-                    </span>
+
+            <h3 className="text-slate-800 text-lg lg:text-xl font-serif font-bold leading-tight mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+              {property.title}
+            </h3>
+
+            <p className="text-slate-500 text-sm font-medium mb-4 flex items-center gap-1">
+              <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {property.city}, {property.district} &bull; {property.neighborhood}
+            </p>
+
+            {/* Features Info */}
+            <div className="flex items-center gap-4 text-slate-600 text-sm border-t border-slate-100 pt-3 mt-auto">
+              {property.bedrooms !== undefined && (
+                <div className="flex items-center gap-1">
+                  <span className="font-bold text-slate-800">{property.bedrooms}</span>
+                  <span className="text-slate-400 text-xs uppercase">Oda</span>
+                </div>
+              )}
+              {property.bathrooms !== undefined && (
+                <div className="flex items-center gap-1 pl-4 border-l border-slate-100">
+                  <span className="font-bold text-slate-800">{property.bathrooms}</span>
+                  <span className="text-slate-400 text-xs uppercase">Banyo</span>
+                </div>
+              )}
+               {property.size !== undefined && (
+                <div className="flex items-center gap-1 pl-4 border-l border-slate-100">
+                  <span className="font-bold text-slate-800">{property.size}</span>
+                  <span className="text-slate-400 text-xs uppercase">m²</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-end justify-between mt-4 lg:mt-0">
+             {/* Agent Mini Profile */}
+            {showAvatar && (
+               <div className="flex items-center gap-2 group/agent">
+                  <Avatar
+                    src={property.agentAvatarUrl}
+                    name={`${property.agentName} ${property.agentSurname}`}
+                    className="w-8 h-8 text-xs transition-opacity opacity-90 group-hover/agent:opacity-100"
+                  />
+                  <div className="flex flex-col">
+                     <span className="text-xs font-bold text-slate-700 leading-none">{property.agentName}</span>
+                     <span className="text-[10px] text-slate-400 leading-none mt-0.5">{property.agentOffice?.name}</span>
                   </div>
-                ) : (
-                  <span className="text-2xl font-bold text-primary">
+               </div>
+            )}
+
+            <div className="text-right">
+              {property.discountedPrice > 0 ? (
+                <div className="flex flex-col items-end">
+                  <span className="text-sm line-through text-slate-400">
                     <PriceDisplay price={property.price} />
                   </span>
-                )}
-              </div>
+                  <span className="text-2xl font-bold text-primary-600">
+                    <PriceDisplay price={property.discountedPrice} />
+                  </span>
+                </div>
+              ) : (
+                <span className="text-2xl font-bold text-primary-600">
+                  <PriceDisplay price={property.price} />
+                </span>
+              )}
             </div>
           </div>
         </div>
       </Link>
-      {showAvatar == true && (
-        <div className="lg:w-1/5 w-full flex lg:items-center items-start  flex-col  hover:bg-slate-100 hover:cursor-pointer rounded-r-xl ">
-          <Link
-            href={`/ofis/${property.agentOffice.id}/${property.agentOffice.slug}/${property.agentRoleSlug}/${property.agentId}/${property.agentSlug}`}
-            className="flex  w-full lg:justify-center  items-center  flex-row lg:flex-col lg:my-6 gap-x-2 lg:gap-x-0 "
-          >
-            <Avatar
-              showFallback
-              name={property.agentName + " " + property.agentSurname}
-              src={property.agentAvatarUrl}
-              className="h-16 w-16 lg:m-0 m-2  mb-2 lg:mx-auto border border-slate-300"
-            />
-            <p className="font-bold ">
-              {property.agentName} {property.agentSurname}
-            </p>
-            <p className="font-light">{property.agentOffice.name}</p>
-          </Link>
-        </div>
-      )}
     </Card>
   );
 };

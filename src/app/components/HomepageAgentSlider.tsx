@@ -13,9 +13,12 @@ import { Card, CardBody } from "@nextui-org/react";
 import OfficeWorkerCard from "./OfficeWorkerCard";
 
 export default function HomepageAgentSlider({ agents }: { agents: any[] }) {
+  if (!agents || agents.length === 0) {
+    return <div className="text-center p-4">Henüz danışman eklenmemiş.</div>;
+  }
   return (
     <>
-      <div className="flex justify-center  p-6 mt-6 items-center bg-gradient-to-r from-blue-950 via-sky-300 to-sky-250 ">
+      <div className="flex justify-center items-center w-full">
         <Carousel
           opts={{
             loop: true,
@@ -25,11 +28,11 @@ export default function HomepageAgentSlider({ agents }: { agents: any[] }) {
           autoplayInterval={5000}
           className="w-full"
         >
-          <CarouselContent className="-ml-1 ">
+          <CarouselContent className="-ml-4">
             {agents.map((agent, index) => (
               <CarouselItem
                 key={index}
-                className="pl-1 mx-4 md:basis-1/2 lg:basis-1/4 xl:basis-1/4 place-items-center"
+                className="pl-4 md:basis-1/2 lg:basis-1/4 xl:basis-1/5"
               >
                 <OfficeWorkerCard officeWorker={agent} index={index} />
               </CarouselItem>

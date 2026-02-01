@@ -26,6 +26,7 @@ const OfficeWorkerAvatars = ({ members }: Props) => {
             width={40}
             height={40}
             className="object-cover"
+            unoptimized={!member.avatarUrl}
           />
         </div>
       ))}
