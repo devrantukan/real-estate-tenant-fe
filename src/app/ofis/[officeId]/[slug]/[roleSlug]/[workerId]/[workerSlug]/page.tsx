@@ -205,18 +205,21 @@ const OfficeWorkerPage = async ({ params }: Props) => {
   }
 
   return (
-    <div>
-      <div className="p-4">
-        <div className="flex lg:flex-row flex-col">
+    <div className="bg-gray-50 min-h-screen">
+      <div className="pt-20 p-4">
+        {/* Header with actions */}
+        <div className="flex justify-end mb-6 gap-2">
+          <ReviewModal officeWorkerId={officeWorker.id} />
+          <Share
+            title={`${officeWorker.name} ${officeWorker.surname}`}
+            type={"Danışmanı"}
+            avatarUrl={officeWorker.avatarUrl || ""}
+          />
+        </div>
+
+        {/* Main content */}
+        <div className="flex lg:flex-row flex-col gap-6">
           <OfficeWorkerSidebar officeWorker={officeWorker} />
-          <div className="absolute right-0 mr-10 mt-4 flex gap-x-2">
-            <ReviewModal officeWorkerId={officeWorker.id} />
-            <Share
-              title={`${officeWorker.name} ${officeWorker.surname}`}
-              type={"Danışmanı"}
-              avatarUrl={officeWorker.avatarUrl || ""}
-            />
-          </div>
           <OfficeWorkerTabs officeWorker={officeWorker} />
         </div>
       </div>

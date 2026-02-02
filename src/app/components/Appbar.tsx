@@ -60,11 +60,11 @@ const Appbar = () => {
             className="flex items-center text-primary-400 hover:text-primary-600 transition-colors"
           >
             <Image
-              src="/investrong.png"
-              width={160}
-              height={96}
+              src="/investrong-dark.svg"
+              width={200}
+              height={40}
               alt="Investrong CRM Logo"
-              className="h-[48px] w-auto object-contain"
+              className="h-[40px] w-auto object-contain"
               priority
               unoptimized
             />

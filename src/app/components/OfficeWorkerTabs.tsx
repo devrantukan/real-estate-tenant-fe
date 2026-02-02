@@ -167,17 +167,23 @@ const OfficeWorkerTabs = ({ officeWorker }: Props) => {
   }, [filteredAndSortedProperties, selectedPage, elementsPerPage]);
 
   return (
-    <div className="p-4 flex flex-col justify-between lg:w-3/4">
+    <div className="flex flex-col justify-between lg:w-3/4">
       <div className="flex w-full flex-col">
         <Tabs
-          aria-label="Options"
+          aria-label="Agent Profile Tabs"
           selectedKey={activeTab}
           onSelectionChange={handleTabChange}
+          classNames={{
+            tabList: "bg-white rounded-lg p-1 shadow-sm border border-gray-200",
+            cursor: "bg-primary-600 shadow-sm",
+            tab: "px-6 py-3 font-semibold",
+            tabContent: "group-data-[selected=true]:text-white text-gray-600"
+          }}
         >
           <Tab id="tab-about-me" key="about-me" title="Hakkımda">
-            <Card>
-              <CardBody>
-                <div dangerouslySetInnerHTML={{ __html: officeWorker.about }} />
+            <Card shadow="sm" className="mt-4 border border-gray-200">
+              <CardBody className="p-6">
+                <div dangerouslySetInnerHTML={{ __html: officeWorker.about }} className="prose prose-sm max-w-none" />
               </CardBody>
             </Card>
           </Tab>
@@ -186,8 +192,8 @@ const OfficeWorkerTabs = ({ officeWorker }: Props) => {
             key="properties"
             title={`Portföylerim (${filteredAndSortedProperties.length})`}
           >
-            <Card>
-              <CardBody>
+            <Card shadow="sm" className="mt-4 border border-gray-200">
+              <CardBody className="p-6">
                 <PropertySearchPanel
                   onSortChange={handleSortChange}
                   onFilterChange={handleFilterChange}
@@ -221,8 +227,8 @@ const OfficeWorkerTabs = ({ officeWorker }: Props) => {
           </Tab>
           {officeWorker.assignedProjects.length > 0 && (
             <Tab id="tab-projects" key="projects" title="Projelerimiz">
-              <Card>
-                <CardBody className="space-y-6">
+              <Card shadow="sm" className="mt-4 border border-gray-200">
+                <CardBody className="space-y-6 p-6">
                   {officeWorker.assignedProjects.map((project: any) => (
                     <ProjectCard project={project} key={project.id} />
                   ))}
@@ -236,8 +242,8 @@ const OfficeWorkerTabs = ({ officeWorker }: Props) => {
               key="customer-reviews"
               title="Müşteri Yorumları"
             >
-              <Card>
-                <CardBody>
+              <Card shadow="sm" className="mt-4 border border-gray-200">
+                <CardBody className="p-6">
                   <OfficeWorkerReviews reviews={officeWorker.reviews} />
                 </CardBody>
               </Card>

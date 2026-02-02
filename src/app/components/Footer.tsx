@@ -82,9 +82,9 @@ export default function Footer() {
       <div className="w-full flex lg:flex-row flex-col justify-between">
         <nav aria-label="Social media links" className="flex flex-col h-full items-center lg:items-start">
           <Image
-            src={"/investrong.png"}
-            width={160}
-            height={100}
+            src={"/investrong-light.svg"}
+            width={200}
+            height={40}
             alt="Investrong CRM Logo"
             className="h-[56px] w-auto object-contain mb-6"
             unoptimized
